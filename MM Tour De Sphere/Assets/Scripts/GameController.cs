@@ -28,8 +28,8 @@ public class GameController : MonoBehaviour
         multiplier_on = false;
         points = 0;
         points_multiplier = 1;
-        scoreText.text = "Score: 0";
-        multiplierText = "Multiplier: 1X";
+        scoreText.text = "POINTS: 0";
+        multiplierText = "MULTIPLIER: 1X";
         current_player = GameObject.FindWithTag("Player");
     }
 
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
     public void displayText()
     {
         scoreText.text = "POINTS: " + this.points + getMultiplier();
-        playerHealthText.text = "HEALTH: " + getHealth();
+        playerHealthText.text = "HEARTS: " + getHealth();
     }
 
     string getMultiplier()
@@ -86,7 +86,14 @@ public class GameController : MonoBehaviour
 
     string getHealth()
     {
-        return current_player.GetComponent<PlayerController>().getHealth().ToString();
+        float amount = current_player.GetComponent<PlayerController>().getHealth();
+        switch (amount)
+        {
+            case 3.0f: return "<3 <3 <3";
+            case 2.0f: return "<3 <3";
+            case 1.0f: return "<3";
+            default: return "DEAD";
+        }
     }
 
     public void SetPrompt(string text)

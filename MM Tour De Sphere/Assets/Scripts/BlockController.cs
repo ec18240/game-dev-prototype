@@ -13,6 +13,8 @@ public class BlockController : MonoBehaviour
 
     private Vector3 current_location; //Vector of current object;
 
+    private bool canActivate = false;
+
 
     public enum Mode
     {
@@ -62,10 +64,23 @@ public class BlockController : MonoBehaviour
     void Update()
     {
         
-        if(Vector3.Distance(player.transform.position, getLocation()) < 10)
+        if(Vector3.Distance(player.transform.position, getLocation()) < 2)
         {
             UnityEngine.Debug.Log(Vector3.Distance(player.transform.position, getLocation()));
             GUIControl.GetComponent<GameController>().SetPrompt("Press A to interact with the block");
+            canActivate = true;
         }
+        else
+        {
+            GUIControl.GetComponent<GameController>().SetPrompt("");
+            canActivate = false;
+        }
+
+        if(canActivate == true && Input.GetKeyDown(KeyCode.A)){
+            GUIControl.GetComponent<GameController>().SetPrompt("");
+            canActivate = false;
+            gameObject.GetComponent<BlockController>().enabled = false;
+        }
+
     }
 }

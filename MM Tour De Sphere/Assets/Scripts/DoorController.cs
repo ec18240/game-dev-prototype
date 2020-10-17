@@ -23,9 +23,7 @@ public class DoorController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         door = this.gameObject;
         promptText = "Press A to activate the door";
-        canActivate = false;
-        
-        
+        canActivate = false;  
     }
 
     // Update is called once per frame
@@ -49,7 +47,9 @@ public class DoorController : MonoBehaviour
                 target.y += 0.5f;
                 door.transform.position = Vector3.MoveTowards(door.transform.position, target, Time.deltaTime * 5f);
             }
-            canActivate = false;  
+            GUIControl.GetComponent<GameController>().SetPrompt("");
+            canActivate = false;
+            gameObject.GetComponent<DoorController>().enabled = false;
         }
 
     }

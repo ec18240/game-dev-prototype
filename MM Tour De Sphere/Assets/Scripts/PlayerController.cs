@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 500;
+        speed = 450;
         jump = new Vector3(0.0f,jumpForce, 0.0f);
         state = Form.Normal;
         playerInfo = player.transform;
