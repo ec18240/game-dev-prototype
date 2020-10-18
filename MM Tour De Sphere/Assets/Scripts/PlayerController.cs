@@ -71,7 +71,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "EnemyBlock" && canDamage == true)
         {
-            TakeDamage();
+            if (other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
+            {
+                TakeDamage();
+            }
         }
 
         if(other.gameObject.tag == "HealthBlock")
@@ -81,7 +84,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         UnityEngine.Debug.Log(canDamage);
         health_hearts -= red_damage;
