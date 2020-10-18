@@ -11,8 +11,8 @@ public class BlockController : MonoBehaviour
     public GameObject player; // this is the player;
     private GameObject GUIControl; //Gets the GUI;
 
-    private Vector3 current_location; //Vector of current object;
-
+    private GameObject[] childrenList;
+    private Vector3 current_location; //Vector of current object
     private bool canActivate = false;
 
 
@@ -27,7 +27,13 @@ public class BlockController : MonoBehaviour
     void Start()
     {
         setMode();
+        setList();
         GUIControl = GameObject.FindWithTag("GameController");
+    }
+
+    void setList()
+    {
+        
     }
 
     void setMode()
@@ -47,6 +53,24 @@ public class BlockController : MonoBehaviour
         else
         {
             state = Mode.Inactive;
+        }
+    }
+
+    public void switchMode(Mode mode)
+    {
+        switch (mode)
+        {
+            case Mode.Enemy: state = Mode.Enemy;
+                break;
+            case Mode.Health: state = Mode.Health;
+                break;
+            case Mode.Objective: state = Mode.Objective;
+                break;
+            case Mode.Inactive: state = Mode.Inactive;
+                break;
+            default:
+                UnityEngine.Debug.Log("Incorrect Mode inputted, please check code");
+                break;
         }
     }
 
@@ -78,7 +102,9 @@ public class BlockController : MonoBehaviour
 
         if(canActivate == true && Input.GetKeyDown(KeyCode.A)){
             GUIControl.GetComponent<GameController>().SetPrompt("");
+            gameObject.GetComponent<SwitchBlockController>().SwitchActivate();
             canActivate = false;
+            state = Mode.Inactive;
             gameObject.GetComponent<BlockController>().enabled = false;
         }
 
