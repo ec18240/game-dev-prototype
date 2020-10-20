@@ -56,7 +56,6 @@ public class SwitchController : MonoBehaviour
         if(block_type == Type.Aggressive)
         {
             switchCount++;
-            Console.WriteLine(switchCountMax);
         }
         if(switchCount == switchCountMax)
         {

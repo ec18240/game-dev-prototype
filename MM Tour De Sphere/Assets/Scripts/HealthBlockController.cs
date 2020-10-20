@@ -30,10 +30,10 @@ public class HealthBlockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log("MORE THAN 2");
+        //UnityEngine.Debug.Log("MORE THAN 2");
         if (Vector3.Distance(player.transform.position, getLocation()) < 2)
         {
-            UnityEngine.Debug.Log("LESS THAN 2");
+            //UnityEngine.Debug.Log("LESS THAN 2");
             if(attempt_count == 1)
             {
                 GUIControl.GetComponent<GameController>().SetPrompt("Press A to interact with the HEALTH block (" + attempt_count + " heals remaining)");

@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UnityEngine.Debug.Log(multiplier_time);
         checkMultiplier();
     }
 
@@ -48,6 +49,7 @@ public class GameController : MonoBehaviour
             multiplier_point_count = 0;
             multiplier_on = false;
             this.points_multiplier = 1;
+            multiplier_time = 5;
             multiplierText = "Multiplier: " + this.points_multiplier + "X";
             displayText();
         }
