@@ -10,7 +10,7 @@ public class MoverController : MonoBehaviour
 
     private Vector3 target_point;
 
-    private float speed;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
