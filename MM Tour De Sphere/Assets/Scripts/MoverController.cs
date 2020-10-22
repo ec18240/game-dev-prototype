@@ -15,7 +15,6 @@ public class MoverController : MonoBehaviour
     void Start()
     {
         target_point = end_point;
-        speed = 5f;
     }
 
     // Update is called once per frame
