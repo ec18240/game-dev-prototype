@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool canDamage = true;
 
     private Vector3 jump;
-    private float jumpForce = 6.0f;
+    private float jumpForce = 4.25f;
     private float JFSmallScale = 0.5f;
     private float JFNormalScale = 2.0f;
     private float jumpCoolDown = 1.0f;
