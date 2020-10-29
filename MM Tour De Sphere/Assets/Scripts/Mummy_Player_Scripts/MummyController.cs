@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MummyController : MonoBehaviour
+
 {
     IInput input;
     PlayerMovement movement;
-    // Start is called before the first frame update
     private void OnEnable()
     {
         input = GetComponent<IInput>();
