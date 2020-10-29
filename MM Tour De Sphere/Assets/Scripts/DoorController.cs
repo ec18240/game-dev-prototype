@@ -18,6 +18,7 @@ public class DoorController : MonoBehaviour
     private bool canActivate;
 
     private string promptText;
+    private const string interactButton = "A";
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class DoorController : MonoBehaviour
         GUIControl = GameObject.FindWithTag("GameController");
         player = GameObject.FindWithTag("Player");
         //door = this.gameObject;
-        promptText = "Press A to activate the door";
+        promptText = "Press " + interactButton + " to activate the door";
         canActivate = false;  
     }
 

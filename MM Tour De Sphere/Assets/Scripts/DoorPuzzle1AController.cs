@@ -27,19 +27,16 @@ public class DoorPuzzle1AController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log("NUMBER OF SWITCHES ARE: " + switches_on);
         switchActivate();
     }
 
     public void OnSwitch()
     {
-        UnityEngine.Debug.Log("NUMBER OF ON SWITCHES ARE: " + switches_on);
         switches_on++;
     }
 
     public void OffSwitch()
     {
-        UnityEngine.Debug.Log("NUMBER OF  ON SWITCHES ARE: " + switches_on);
         switches_on--;
     }
 

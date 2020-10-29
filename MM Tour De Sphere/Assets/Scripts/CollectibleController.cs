@@ -27,7 +27,7 @@ public class CollectibleController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GUIControl.GetComponent<GameController>().addPoints(collectible_amount);
+            GUIControl.GetComponent<GameController>().AddPoints(collectible_amount);
             switchLeader.GetComponent<SwitchController>().Heartbeat();
 
         }

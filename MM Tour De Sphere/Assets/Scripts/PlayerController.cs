@@ -17,24 +17,27 @@ public class PlayerController : MonoBehaviour
     private bool playerGrounded = true;
     private bool canDamage = true;
 
+    //Player jump variables
     private Vector3 jump;
-    private float jumpForce = 4.25f;
-    private float JFSmallScale = 0.5f;
-    private float JFNormalScale = 2.0f;
+    private float jumpForce = 5.5f; //How high the player can jump
+    private float JFSmallScale = 0.5f; //Jump multiplier when player goes from normal size to small
+    private float JFNormalScale = 2.0f; //Jump multiplier when player goes from small to normal
     private float jumpCoolDown = 1.0f;
-    private const float jumpCoolDown_Reset = 1.0f;
+    private const float jumpCoolDown_Reset = 1.0f; //Jump cooldown timer start point
 
-    private float damageCoolDown = 0.5f;
+    private float damageCoolDown = 0.5f; //How long before the player can take damage again
     private const float damageCoolDown_Reset = 0.5f;
 
 
-    private float health_hearts = 3.0f;
-    private const float red_damage = 1.0f;
+    private float health_hearts = 3.0f; //Player by default has 3 hearts
+    private const float red_damage = 1.0f; //When the player gets damaged, he loses 1 health
 
-    private float wallPushLeft;
+/*    private float wallPushLeft;
     private float wallPushRight;
     private float wallPushUp;
-    private float wallPushDown;
+    private float wallPushDown;*/
+
+    private bool playerInControl = true;
 
     enum Form
     {
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 450;
+        speed = 450.0f;
         jump = new Vector3(0.0f,jumpForce, 0.0f);
         state = Form.Normal;
         playerInfo = player.transform;
@@ -53,15 +56,25 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void SetPlayerControl(bool value)
+    {
+        playerInControl = value;
+    }
+
     void FixedUpdate()
     {
-        float horAxis = Input.GetAxis("Horizontal");
-        float verAxis = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(horAxis, 0.0f, verAxis);
+        if(playerInControl == true)
+        {
+            float horAxis = Input.GetAxis("Horizontal");
+            float verAxis = Input.GetAxis("Vertical");
+            Vector3 movement = new Vector3(horAxis, 0.0f, verAxis);
 
-        GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+            GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+        }
+        
         
     }
+
 
     void OnTriggerEnter(Collider other)
     {
