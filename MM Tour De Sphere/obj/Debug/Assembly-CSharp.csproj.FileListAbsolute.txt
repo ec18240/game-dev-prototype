@@ -1,2 +1,0 @@
-C:\Users\Tab PC\Desktop\game-dev-prototype\MM Tour De Sphere\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
-C:\Users\Tab PC\Desktop\game-dev-prototype\MM Tour De Sphere\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
