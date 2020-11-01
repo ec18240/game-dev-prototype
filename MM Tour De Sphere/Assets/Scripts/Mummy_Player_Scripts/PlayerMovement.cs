@@ -41,12 +41,10 @@ public class PlayerMovement : MonoBehaviour
             }
             else {
                 movementVector = Vector3.zero;
-
                 //MummyAnimator.SetFloat("move", 0);
                 //this is commented out as animaton isnt being used for the prototype (properly)
 
             }
-
         }
     }
 

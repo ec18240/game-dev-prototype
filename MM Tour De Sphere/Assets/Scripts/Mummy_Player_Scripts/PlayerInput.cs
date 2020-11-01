@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour, IInput
     {
         //method for player input
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-       OnMovementInput?.Invoke(input);
+        OnMovementInput?.Invoke(input);
     }
 }
 
