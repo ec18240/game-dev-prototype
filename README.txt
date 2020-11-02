@@ -27,6 +27,9 @@ NOTE:
 - Activate the point multiplier to get extra points but collecting a streak of points in the space of a few seconds
 
 - Hope you enjoy, tell us your fastest time
-- My fastest time was 35.9 seconds and my highest score was 61,800 (Ashley)
+- My fastest time was 32.9 seconds and my highest score was 108,800 (Ashley)
 
 - IMPORTANT NOTE: if you want to test the mummy player (which is still under development) please deactivate the Player1A, activate the freelook camera and activate mummy player [vice versa for the ball player] . thank you.
+
+- When playing, there will be a 'preview packages in use' in the top of the screen. I don't know how to get rid of this but
+- Click on it and click 'dismiss for now'
