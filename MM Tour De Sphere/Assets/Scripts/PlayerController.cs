@@ -17,27 +17,46 @@ public class PlayerController : MonoBehaviour
     private bool playerGrounded = true;
     private bool canDamage = true;
 
-    //Player jump variables
+    //PLAYER JUMP VARIABLES
     private Vector3 jump;
-    private float jumpForce = 5.5f; //How high the player can jump
+    private float jumpForce = 5.5f; //HOW HIGH THHE PLAYER CAN JUMP
     private float JFSmallScale = 0.5f; //Jump multiplier when player goes from normal size to small
     private float JFNormalScale = 2.0f; //Jump multiplier when player goes from small to normal
     private float jumpCoolDown = 1.0f;
-    private const float jumpCoolDown_Reset = 1.0f; //Jump cooldown timer start point
+    private const float jumpCoolDown_Reset = 1.0f; //DEFAULT JUMP COOLDOWN TIMER
 
-    private float damageCoolDown = 0.5f; //How long before the player can take damage again
+
+
+    //PLAYER DAMAGE COOLDOWN VARIABLES
+    private float damageCoolDown = 0.5f; //TIME BEFORE PLAYER CAN TAKE DAMAGE AGAIN
     private const float damageCoolDown_Reset = 0.5f;
 
 
+    //PLAYER HEALTH/DAMAGE VARIABLES
     private float health_hearts = 3.0f; //Player by default has 3 hearts
     private const float red_damage = 1.0f; //When the player gets damaged, he loses 1 health
 
-/*    private float wallPushLeft;
-    private float wallPushRight;
-    private float wallPushUp;
-    private float wallPushDown;*/
 
+    //IN A SCRIPTED EVENT, YOU DON'T WANT THE PLAYER TO HAVE CONTROL OF THE CHARACTER-MOVEMENT
     private bool playerInControl = true;
+
+    /*  PLANNED ON MAKING IT SO WHEN THE MUMMY COLLIDES WITH A WALL
+     *  THEY BOUNCE BACK
+     *  I MAY ADD THIS LATER IN THE GAME AND MAKE ANOTHER SCRIPT CALLED
+     *  'BOUNCYWALLCONTROLLER'
+     *    
+     *  private float wallPushLeft;
+        private float wallPushRight;
+        private float wallPushUp;
+        private float wallPushDown; */
+
+
+
+
+    /* I set some of the methods to public
+     * So that other major gameobject scripts like gamecontroller
+     * could interact with the player (Ashley)
+     */
 
     enum Form
     {
@@ -56,6 +75,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
+
+    //SETS WHETHER THE PLAYER IS IN-CONTROL OR NOT. FALSE IF A SCRIPTED EVENT OCCURS
     public void SetPlayerControl(bool value)
     {
         playerInControl = value;
@@ -75,6 +96,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    /*WILL UPDATE THE FIRST IF STATEMENT AS I FOUND AN EASIER WAY
+     * 
+     * IF THE PLAYER COLLIDES WITH A HEALTH BLOCK THEY ARE HEALED
+     * WHEN THEY COLLIDE WITH AN ENEMY BLOCK, THEY GET HURT
+     * 
+     * WHEN THE USER COLLECTS ALL THE SWITCH COLLECTIBLES IN 1A THE COLLECTIBLES DIE.
+     * HOWEVER I LEARNED THAT IT WOULD BE MUCH EASIER TO PUT THIS IN COLLECTIBLECONTROLLER
+     * LIKE I DID WHEN I WROTE POINTCONTROLLER
+     */
 
     void OnTriggerEnter(Collider other)
     {
@@ -96,6 +126,11 @@ public class PlayerController : MonoBehaviour
             ReportToGUI();
         }
     }
+    /*
+     * WHEN THE PLAYER COLLIDES WITH AN ENEMY BLOCK
+     * THEY TAKE DAMAGE AND THEN THE HEALTH IS REPORTED
+     * BACK TO THE GUI WHICH IS CONTROLLED BY THE GAMECONTROLLER WHICH IS VARIABLE GUICONTROL
+     */
 
     public void TakeDamage()
     {
@@ -106,6 +141,9 @@ public class PlayerController : MonoBehaviour
         UnityEngine.Debug.Log("TAKE DAMAGE");
         ReportToGUI();
     }
+    /* WHEN THE CHARACTER STAYS COLLIDED
+     * WITH THE ENEMY BLOCKS, THEY CONTINUE TO LOSE DAMAGE
+     */
 
     void OnTriggerStay(Collider other)
     {
@@ -118,11 +156,23 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+    
+    /*
+     * THE GUICONTROL VARIABLE WHICH HAS THE GAMECONTROLLER 
+     * REPORTS BACK TO THE GUI
+     */
 
     void ReportToGUI()
     {
         GUIControl.GetComponent<GameController>().displayText();
     }
+
+    /*PUT A JUMP COOLDOWN BECAUSE THE PLAYER
+     * COULD JUMP MID-AIR AND COULD ALSO WALL JUMP
+     * I WILL UPDATE THIS METHOD
+     * 
+     * I BELIEVE THIS IF STATEMENT IS ACTUALLY INCORRECT BUT I WILL PATCH IT IN THE FINAL BUILD OF THE GAME
+     */ 
 
     void OnCollisionStay()
     {
@@ -137,7 +187,7 @@ public class PlayerController : MonoBehaviour
     void toggleSize()
     {
 
-        if(state == Form.Normal) // character turns small
+        if(state == Form.Normal) // CHARACTER TURNS SMALL
         {
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFSmallScale, playerInfo.localScale.y * JFSmallScale, playerInfo.localScale.y * JFSmallScale);
             jumpForce *= JFSmallScale;
@@ -145,7 +195,7 @@ public class PlayerController : MonoBehaviour
             state = Form.Small;
             
         }
-        else if(state == Form.Small)
+        else if(state == Form.Small) //CHARACTER TURNS BIG
         {
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFNormalScale, playerInfo.localScale.y * JFNormalScale, playerInfo.localScale.y * JFNormalScale);
             jumpForce *= JFSmallScale;
@@ -157,6 +207,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //IF THE USER US GROUNDED AND PRESSES THE SPACE_BAR, THEY CAN JUMP
         if(Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity + jump;
@@ -176,10 +227,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
+     * SETS SPEED
+     */
+
     public void SetSpeed(float speed)
     {
         this.speed = speed;
     }
+
+    /*
+     * GETS HEALTH 
+     */
 
     public float getHealth()
     {

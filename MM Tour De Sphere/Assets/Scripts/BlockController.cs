@@ -17,6 +17,14 @@ public class BlockController : MonoBehaviour
 
     private const string interactButton = "A";
 
+    public static bool isUsed; //USED TO TELL IF CURRENT GAMEOBJECT IS IN USE, WILL IMPLEMENT LATER
+
+    /*TYPE OF BLOCK THE BLOCK IS
+     *HEALTH : THIS BLOCK WILL HEAL YOU
+     *ENEMY: THIS BLOCK WILL DAMAGE YOU
+     *OBJECTIVE: THIS BLOCK IS A SWITCH
+     *INACTIVE: A WHITE INACTIVE BLOCK WHICH DOES NOTHING
+     */
 
     public enum Mode
     {
@@ -25,6 +33,8 @@ public class BlockController : MonoBehaviour
         Objective,
         Inactive
     }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +43,15 @@ public class BlockController : MonoBehaviour
         GUIControl = GameObject.FindWithTag("GameController");
     }
 
+    //DEAD METHOD, INITIALLY INTENDED TO GET LIST OF CHILDREN
+    //MAY NOT NEED TO ADD IT IN BUT I WILL TRY TO (Ashley)
+
     void setList()
     {
         
     }
+
+    //SETS MODES AS SHOWN ABOVE
 
     void setMode()
     {
@@ -58,6 +73,8 @@ public class BlockController : MonoBehaviour
         }
     }
 
+    //ALLOWS BLOCKS TO SWITCH MODES
+
     public void switchMode(Mode mode)
     {
         switch (mode)
@@ -76,10 +93,14 @@ public class BlockController : MonoBehaviour
         }
     }
 
+
+    //GET LOCATION OF CURRENT GAMEOBJECT
     public Vector3 getLocation()
     {
         return gameObject.transform.position;
     }
+
+    //RETRIEVE CURRENT MODE OF THE OBJECT
 
     public Mode getMode()
     {
@@ -89,7 +110,9 @@ public class BlockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UnityEngine.Debug.Log(this.gameObject.name + ": " + Vector3.Distance(player.transform.position, getLocation()));   
+        //UnityEngine.Debug.Log(this.gameObject.name + ": " + Vector3.Distance(player.transform.position, getLocation()));  
+
+        //IF THE PLAYER IS LESS THAN 2 (I guess CM) AWAY FROM THE BLOCK, DISPLAY A PROMPT (THIS IS BUGGED, WILL FIX SOON)
         if(Vector3.Distance(player.transform.position, getLocation()) < 2)
         {
             //UnityEngine.Debug.Log("AYE");
@@ -102,6 +125,10 @@ public class BlockController : MonoBehaviour
             GUIControl.GetComponent<GameController>().SetPrompt("");
             canActivate = false;
         }
+        
+        //IF NOT ALREADY ACTIVATED, THE PLAYER IS ABLE TO PRESS A TO INTERACT WITH THE BLOCK
+        // I MAY REDO THIS IMPLEMENTATION LIKE I HAVE DONE WITH MAGNET CONTROLLER.
+        // MAKE A SEPARATE BLOCK CONTROLLER AND LEAVE THE PARTS THAT ALL BLOCKS HAVE IN THIS CODE
 
         if(canActivate == true && Input.GetKeyDown(KeyCode.A)){
             GUIControl.GetComponent<GameController>().SetPrompt("");

@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     private GameObject current_player;
 
-    private int points; //[points
+    private int points; //points
     private int points_multiplier; //the multiplier
     private float multiplier_time = 5.0f; //time that time multiplier is active
     private const int multiplier_point_bracket = 5; //Every 5 points, the multiplier increases
@@ -46,12 +46,23 @@ public class GameController : MonoBehaviour
         gameTimer = 0;
     }
 
+    /* THROUGHOUT ALL OF THIS,
+     * THE GAMECONTROLLER CHECKS IF THERE ARE ANY MULTIPLIERS PRESENT
+     * IT ALSO KEEPS TRACK OF THE GAME TIME BY ADDING TIME.DELTATIME
+     */ 
+
     // Update is called once per frame
     void Update()
     {
         gameTimer += Time.deltaTime;
         checkMultiplier();
     }
+
+    /*
+     * CHECKS TO SEE IF THE MULTIPLIER IS LESS THAN 0
+     * IF SO AND THE MULTIPLIER IS ON, THE MULTIPLIER IS SET TO 0
+     * (Ask me, Ashley, for more details)
+     */
 
     void checkMultiplier()
     {
@@ -67,6 +78,11 @@ public class GameController : MonoBehaviour
             displayText();
         }
     }
+    /*
+     * GETS THE OVERALL GAME TIMER WHICH IS RUNNING IN THE UPDATE METHOD
+     * THIS GETS ROUNDED TO ONE DECIMAL PLACE
+     * THE TIME IS DISPLAYED IN SECONDS
+     */
 
     public double getTimer()
     {
@@ -93,19 +109,25 @@ public class GameController : MonoBehaviour
         displayText();
     }
 
-    public void displayText() //Displays info
+    public void displayText() //DISPLAYS INFORMATION IN THE UI, CALLED BY OTHER SCRIPTS
     {
-        if(text_disable == false) //Checks if text is disable first before displaying info
+        if(text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
         {
             scoreText.text = "POINTS: " + this.points + getMultiplier();
             playerHealthText.text = "HEARTS: " + getHealth();
         }
     }
 
-    public void DisplayTime() //Eventually used to display time in-game
+    public void DisplayTime() //EVENTUALLY USED TO DISPLAY TIME IN THE GAME, WILL IMPLEMENT IN FULL VERSION (Ashley)
     {
 
     }
+
+    /*
+     * WILL BE USED TO CREATE A LIST OF USED POWERUPS
+     * THIS LIST WILL BE USED TO DISPLAY ALL CURRENT POWERUPS AVAILABLE
+     * ADD AND REMOVE METHODS ADD AND REMOVE POWER UPS FROM THE LIST
+     */ 
 
     public void AddPowerUp(string powerup)
     {
@@ -136,12 +158,13 @@ public class GameController : MonoBehaviour
     }
     
 
-    string getMultiplier() //Gets the multiplier in string form
+    //GETS THE MULTIPLIER IN STRING FROM HOWEVER I MIGHT CHANGE THIS
+    string getMultiplier() 
     {
         return "\n" + multiplierText;
     }
 
-    public void setMultiplier(int new_multiplier) //sets multiplier
+    public void setMultiplier(int new_multiplier) //SETS THE MULTIPLIER
     {
         points_multiplier = new_multiplier;
     }
@@ -163,6 +186,10 @@ public class GameController : MonoBehaviour
         promptText.text = text;
     }
 
+    /*IF THE TEXT IS DISABLED
+     * DO NOT DISPLAY ANYTHING
+     */
+
     public void DisableText(bool value)
     {
         if(value == true)
@@ -181,12 +208,12 @@ public class GameController : MonoBehaviour
 
     }
 
-    int getResult() //Gets final points
+    int getResult() //RETRIEVES FINAL POINTS
     {
         return points * points_multiplier;
     }
 
-    public void DisplayWin() //Displays win text
+    public void DisplayWin() //DISPLAYS THE WIN TEXT
     {
         winText.text = "FINISH LINE REACHED! \n" + getTimer() + " SECONDS \n" + this.points + " POINTS\n" + getResult() + " FINAL POINTS (x" + this.points_multiplier + " MULTIPLIER BONUS)";
     }

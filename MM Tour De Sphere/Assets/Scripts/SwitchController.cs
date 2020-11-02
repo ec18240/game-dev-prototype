@@ -6,10 +6,10 @@ using UnityEngine;
 public class SwitchController : MonoBehaviour
 {
     public GameObject collect;
-    public GameObject GateSwitch; //CurrentGate
-    public GameObject Gate; //Gate the switch is responsible for
+    public GameObject GateSwitch; //CURRENT GATE
+    public GameObject Gate; //GATE THAT THE SWITCH IS REPSONSIBLE FOR
 
-    private string switchTag;
+    private string switchTag; //TAG OF THE OBJECT
 
     private int switchCount;
     private int switchCountMax;
@@ -19,17 +19,17 @@ public class SwitchController : MonoBehaviour
 
     enum Type
     {
-        Passive, //Does not self destruct upon collision/completion of a task
-        Aggressive //Self-destructs upon collision/completion of a task
+        Passive, //OBJECT DOES NOT SELF_DESTRUCT UPON THE COMPLETION OF A TASK
+        Aggressive //SELF-DESTRUCTS UPON THE COMPLETION OF A TASK
     }
 
     // Start is called before the first frame update
     void Start()
     {
         switchTag = collect.tag;
-        switchList = GameObject.FindGameObjectsWithTag(switchTag); //Gets list of all collectibles responsible for unlocking the gate
-        switchCountMax = switchList.Length; //Finds amount of collectibles under switchTag's tag
-        setType();
+        switchList = GameObject.FindGameObjectsWithTag(switchTag); //GETS A LIST OF ALL COLLECTIBLES RESPONSIBLE FOR OPENING THE GATE
+        switchCountMax = switchList.Length; //FINDS AMOUNT OF COLLECTIBLES UNDER SWITCHTAG'S TAG
+        setType(); 
         
     }
 
@@ -51,6 +51,10 @@ public class SwitchController : MonoBehaviour
         }
     }
 
+
+    //CHECKS AND REPORTS THE STATUS OF THE SWITCH CONTROLLER
+    //I HAVE SINCE LEARNED A BETTER IMPLEMENTATION FROM WRITING THE DOOR PUZZLE SCRIPTS AND THE SWITCH BLOCK CONTROLLER SCRIPTS
+    // WILL REDO THIS IMPLEMENTATION IF THERE IS TIME (Ashley)
     public void Heartbeat()
     {
         if(block_type == Type.Aggressive)

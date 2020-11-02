@@ -8,14 +8,15 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
 
-    private GameObject player;
-    public GameObject door;
-    private GameObject GUIControl;
-    private Vector3 target;
+    private GameObject player; //PLAYER
+    public GameObject door; //INDIVIDUAL DOOR THAT HOLDS THIS SCRIPT
 
-    public Material door_on_material;
+    private GameObject GUIControl; //GUI GAMEOBJECT WHICH HAS GAMECONTROLLER SCRIPT
+    private Vector3 target; // TARGET, NEW LOCATION OF THE DOOR
 
-    private bool canActivate;
+    public Material door_on_material; //MATERIAL OF THE DOOR ONCE IT IS ACTIVATED
+
+    private bool canActivate; //WHETHER THE DOOR CAN BE ACTIVATED OR NOT
 
     private string promptText;
     private const string interactButton = "A";
@@ -54,6 +55,12 @@ public class DoorController : MonoBehaviour
 
     }
 
+
+    /*I HAVE SINCE LEARNED A BETTER WAY TO IMPLEMENT THIS AS SEEN IN THE
+     * MOVERCONTROLLER SCRIPT THAT I WROTE
+     * I WILL USE THE IMPLEMENTATION THAT I MADE THERE AS A GUIDE
+     * FOR HOW TO IMPROVE ON THIS IMPLEMENTATION
+     */ 
     public void OpenDoor()
     {
         while (target.y < 20.0)

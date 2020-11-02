@@ -27,6 +27,12 @@ public class MagnetController : MonoBehaviour
     }
 
     // Update is called once per frame
+    /* IF THE MAGNET POWERUP IS ACTIVE AND THE TIMER GOES TO 0,
+     * DISABLE THE OBJECT (MagnetPower is initally false)
+     * 
+     * TRIED MAKING A COOL ANIMATION WHERE THE POWERUP SHRINKS AND VANISHES
+     * WILL PATCH LATER
+     */
     void Update()
     {
         magnetPowerTimer -= Time.deltaTime;
@@ -44,6 +50,12 @@ public class MagnetController : MonoBehaviour
         }
     }
 
+    
+    /*
+     * ALL POINTS WILL BE ATTRACTED TO THE MAGNET
+     * WILL RENAME METHOD TO SOMETHING MORE UNDERSTANDBALE LIKE
+     * GoToPlayer MAYBE!
+     */
     public static void SetMagnet(bool value)
     {
         PointController.SetMagnet(value);
@@ -61,6 +73,8 @@ public class MagnetController : MonoBehaviour
             magnetPowerTimer = magnetPowerTimerReset;
         }
     }
+
+    //KILL THE OBJECT
 
     void SetDisable()
     {

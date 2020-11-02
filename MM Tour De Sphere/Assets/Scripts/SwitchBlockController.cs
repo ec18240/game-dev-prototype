@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SwitchBlockController : MonoBehaviour
 {
-    public GameObject[] childrenList;
-    public Material reset_material;
+    public GameObject[] childrenList; //LIST OF CHILDREN THE SWITCH IS RESPONSIBLE FOR
+    public Material reset_material; //INACTIVE MATERIAL THAT THE CHILDREN RESET TO
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,10 @@ public class SwitchBlockController : MonoBehaviour
     {
  
     }
+
+    /*WHEN THE SWITCH IS ACTIVATED
+     * THEN ALL ENEMY BLOCKS THAT THE SWITCH CONTROLS BECOME WHITE AND INACTIVE
+     */
 
     public void SwitchActivate()
     {

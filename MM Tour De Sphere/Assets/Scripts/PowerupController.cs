@@ -30,7 +30,14 @@ public class PowerupController : MonoBehaviour
     private float multiplierPowerTimer;
     private const float multiplierBoost = 5.0f;
 
-
+    /* DEAD CLASS
+     * MAY NOT BE USED AS DECLARING POWERUPS AS I FOUND THAT 
+     * PERHAPS GIVING EACH POWERUP THEIR OWN CONTROLLER
+     * MIGHT BE BETTER (Ashley)
+     * 
+     * REASON: ONE POWER UP IS ONLY GOING TO NEED ONE SET OF VARIABLES
+     * MAY USE ALLPOWER HERE THOUGH
+     */
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +65,10 @@ public class PowerupController : MonoBehaviour
 
         }
     }
+    
+    /* NOT USED
+     * 
+     * SEE MAGNET POWER */
 
     void DeactivatePower(GameObject powerUp)
     {

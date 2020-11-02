@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorPuzzle1A : MonoBehaviour
 {
-    public Material switch_on_material; //material when switch is on
+    public Material switch_on_material; //MATERIAL WHEN SWITCH IS ON
     public Material originalMaterial;
 
     private GameObject puzzleControl;
@@ -19,9 +19,9 @@ public class DoorPuzzle1A : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        puzzleControl = this.transform.parent.gameObject; //Puzzle switch gets its parent, the parent owns the puzzle controller
-        originalMaterial = this.GetComponent<MeshRenderer>().material; //Keeps record of the objects original material
-        switch_timer = switch_on_timer; //Timer is set to the duration of the on switch
+        puzzleControl = this.transform.parent.gameObject; //THE PUZZLE SWITCH GETS ITS PARENT, THE DOOR THAT OWNS THE PUZZLE CONTROLELR
+        originalMaterial = this.GetComponent<MeshRenderer>().material; //KEEPS A RECORD OF THE SWITCHES ORIGINAL MATERIAL
+        switch_timer = switch_on_timer; //TIMER OF HOW LONG THE SWITCH REMAINS ON
         
     }
 
@@ -32,6 +32,8 @@ public class DoorPuzzle1A : MonoBehaviour
         switchTimer();
     }
 
+
+    //IF THE PLAYER HITS THE SWITCH, TURN ON
     void OnTriggerEnter(Collider other)
     {
         UnityEngine.Debug.Log("OBJECT HIT ");
@@ -49,6 +51,10 @@ public class DoorPuzzle1A : MonoBehaviour
             
         }
     }
+
+    /*SETS WHETHER THE SWITCH IS ON OR NOT
+     * IF IT IS ON, THE OBJECT SWITCHES MATERIAL
+     */
 
     void switchTimer()
     {
@@ -69,7 +75,7 @@ public class DoorPuzzle1A : MonoBehaviour
         }
     }
 
-    void resetTimer() //resets the timer when called
+    void resetTimer() //RESETS TIMER WHEN CALLED
     {
         switch_timer = switch_on_timer;
     }
@@ -79,6 +85,8 @@ public class DoorPuzzle1A : MonoBehaviour
         this.gameObject.GetComponent<MeshRenderer>().material = object_material;
     }
 
+
+    //WHEN ALL SWITCHES ARE ACTIVE, USE THIS
     public void DisableSwitch()
     {
         timer_active = false;

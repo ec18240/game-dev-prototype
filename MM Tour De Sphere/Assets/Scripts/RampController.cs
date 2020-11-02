@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class RampController : MonoBehaviour
 {
+    /*Concept(Ashley):
+     * 
+     * When writing this script, the idea was, there'd be points along a path which the
+     * player moves towards. The path is based on the rampPathArray.
+     * Each point is a sphere in an invisible camera layer that I added (so you can't see the spheres in-game)
+     * 
+     * The player will move towards each sphere in the index of the array. This script simulates a 
+     * quick-time scripted event so the player does not have control of the mummy until the event is done
+     */
+
+
+
     public GameObject [] rampPathArray; //Array of all the ramp points
     private bool rampActivate; //Detects whether player has hit the ramp or not
     private int index;

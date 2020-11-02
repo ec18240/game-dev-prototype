@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectibleController : MonoBehaviour
 {
-    private const int collectible_amount = 200;
+    private const int collectible_amount = 200; //YELLOW RUBIES WORTH 200 POINTS
 
     private GameObject GUIControl;
     private GameObject switchLeader;
@@ -13,7 +13,7 @@ public class CollectibleController : MonoBehaviour
     void Start()
     {
         GUIControl = GameObject.FindWithTag("GameController");
-        switchLeader = this.transform.parent.gameObject; //The child declares its parent
+        switchLeader = this.transform.parent.gameObject; //CHILD DECLARES ITS PARENT
 
     }
 
@@ -22,6 +22,11 @@ public class CollectibleController : MonoBehaviour
     {
         
     }
+
+    /* COLLECTIBLE (yellow points)
+     * REPORT BACK TO THE PARENT. HOWEVER I MAY JUST MERGE THIS CODE WITH POINT CONTROLLER
+     * AS POINT CONTROLLER SEEMS MUCH SIMPLER AND MUCH EASIER FOR THE LONG-TERM
+     */
 
     void OnTriggerEnter(Collider other)
     {
