@@ -29,3 +29,4 @@ NOTE:
 - Hope you enjoy, tell us your fastest time
 - My fastest time was 35.9 seconds and my highest score was 61,800 (Ashley)
 
+- IMPORTANT NOTE: if you want to test the mummy player (which is still under development) please deactivate the Player1A, activate the freelook camera and activate mummy player [vice versa for the ball player] . thank you.
