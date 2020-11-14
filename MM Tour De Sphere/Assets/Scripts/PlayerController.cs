@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     private GameObject GUIControl;
 
-    private float speed;
-    private float speed_boost;
+    private const float speedReset = 450.0f;
+    public float speed;
+    private float speedBoost;
     private Transform playerInfo;
 
     private Form state;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
     //IN A SCRIPTED EVENT, YOU DON'T WANT THE PLAYER TO HAVE CONTROL OF THE CHARACTER-MOVEMENT
-    private bool playerInControl = true;
+    public bool playerInControl;
 
     /*  PLANNED ON MAKING IT SO WHEN THE MUMMY COLLIDES WITH A WALL
      *  THEY BOUNCE BACK
@@ -49,8 +50,6 @@ public class PlayerController : MonoBehaviour
         private float wallPushRight;
         private float wallPushUp;
         private float wallPushDown; */
-
-
 
 
     /* I set some of the methods to public
@@ -67,7 +66,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 450.0f;
+        initialise();
+        speedBoost = 1.0f;
         jump = new Vector3(0.0f,jumpForce, 0.0f);
         state = Form.Normal;
         playerInfo = player.transform;
@@ -80,6 +80,14 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerControl(bool value)
     {
         playerInControl = value;
+    }
+
+    void initialise()
+    {
+        if(speed == 0)
+        {
+            this.speed = speedReset;
+        }
     }
 
     void FixedUpdate()
@@ -207,22 +215,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //IF THE USER US GROUNDED AND PRESSES THE SPACE_BAR, THEY CAN JUMP
-        if(Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
+        if(playerInControl == true)
         {
-            player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity + jump;
-            playerGrounded = false;
+            //IF THE USER US GROUNDED AND PRESSES THE SPACE_BAR, THEY CAN JUMP
+            if (Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
+            {
+                player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity + jump;
+                playerGrounded = false;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                toggleSize();
+            }
+            if (damageCoolDown <= 0)
+            {
+                canDamage = true;
+            }
+            jumpCoolDown -= Time.deltaTime;
+            damageCoolDown -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            toggleSize();
-        }
-        if(damageCoolDown <= 0)
-        {
-            canDamage = true;
-        }
-        jumpCoolDown -= Time.deltaTime;
-        damageCoolDown -= Time.deltaTime;
+        
         
 
     }
@@ -235,6 +247,18 @@ public class PlayerController : MonoBehaviour
     {
         this.speed = speed;
     }
+
+    public float getSpeed()
+    {
+        return this.speed;
+    }
+
+    public void SetBoost(float speedBoost)
+    {
+        this.speedBoost = speedBoost;
+        this.speed = speed * this.speedBoost;
+    }
+
 
     /*
      * GETS HEALTH 
