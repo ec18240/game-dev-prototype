@@ -12,6 +12,7 @@ public class ThirdPersonMummyMovement : MonoBehaviour
 
     public float smoothMummy = 0.1f;
     private float smoothTurnMummyVelocity;
+
     public Transform camera;
 
     // Start is called before the first frame update
@@ -32,11 +33,11 @@ public class ThirdPersonMummyMovement : MonoBehaviour
             float AngleTargeted = Mathf.Atan2(mummyDirection.x, mummyDirection.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, AngleTargeted, ref smoothTurnMummyVelocity, smoothMummy);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
             Vector3 DirectionToMove = Quaternion.Euler(0f, AngleTargeted, 0f) * Vector3.forward;
-
             mummyController.Move(DirectionToMove.normalized * speed * Time.deltaTime);
+
         }
+
 
 
     }
