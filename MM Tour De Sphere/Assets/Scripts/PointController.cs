@@ -36,7 +36,7 @@ public class PointController : MonoBehaviour
     /*
      * IF MAGNETMODE IS ON, THE POINTS WILL GO TO THE PLAYER
      */
-    void Update()
+    void FixedUpdate()
     {
         delta = speed * Time.deltaTime;
         if(magnetMode == true)
