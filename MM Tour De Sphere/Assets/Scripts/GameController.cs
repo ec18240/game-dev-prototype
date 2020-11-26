@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     private GameObject current_player;
@@ -56,6 +56,17 @@ public class GameController : MonoBehaviour
     {
         gameTimer += Time.deltaTime;
         checkMultiplier();
+        CheckDead();
+
+    }
+
+    void CheckDead() {
+        if (playerHealthText.text == "HEARTS: DEAD")
+        {
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            Cursor.lockState = CursorLockMode.None;
+        }
+
     }
 
     /*
@@ -116,6 +127,7 @@ public class GameController : MonoBehaviour
             scoreText.text = "POINTS: " + this.points + getMultiplier();
             playerHealthText.text = "HEARTS: " + getHealth();
         }
+
     }
 
     public void DisplayTime() //EVENTUALLY USED TO DISPLAY TIME IN THE GAME, WILL IMPLEMENT IN FULL VERSION (Ashley)
