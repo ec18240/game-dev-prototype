@@ -12,7 +12,7 @@ public class PointController : MonoBehaviour
     private static bool magnetMode; //CHECKS IF THE POWERUP IS ON. IT IS STATIC AS IT AFFECTS ALL POINTS, NOT JUST ONE
     private float magnetTimer;
     private float magnetTimerRest; //INITIAL TIMER FOR THE MAGNET, HOWEVER I MAY NOT NEED TO USE THIS ANYMORE BECAUSE OF MY MAGNET POWER IMPLEMENTATION
-    private const float speed = 5.0f;
+    private const float speed = 7.0f;
 
     private float delta; // KEEPS CONSISTENT TRACK OF THE MOVEMENT IN RELATION TO THE FRAME-RATE
 
@@ -48,7 +48,7 @@ public class PointController : MonoBehaviour
 
     void MoveToPlayer() //IF THE PLAYER IS NEAR THE OBJECT WHILE THE POWER UP IS ON, THE POINT MOVES TO THE PLAYER
     {
-        if(getDistance() < 4)
+        if(getDistance() < 5)
         {
             this.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, player.transform.position, delta); 
         }

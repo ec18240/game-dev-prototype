@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
             {
+                UnityEngine.Debug.Log("ENTER - HIT PLAYER");
                 TakeDamage();
             }
         }
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
             {
+                UnityEngine.Debug.Log("STAY - HIT PLAYER");
                 TakeDamage();
             }
             

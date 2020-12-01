@@ -50,6 +50,7 @@ public class RampController : MonoBehaviour
         {
             playerControl.SetPlayerControl(true); // Give the player back control once this segment is over
             Destroy(this.gameObject); //Once finished, destroy this object and all the children
+            this.gameObject.GetComponent<RampController>().enabled = false; //Close script
         }
     }
 
