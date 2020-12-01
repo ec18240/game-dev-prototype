@@ -61,7 +61,8 @@ public class DoorPuzzle1AController : MonoBehaviour
     {
         if(switches_on == num_of_switches)
         {
-            puzzle_door.GetComponent<DoorController>().OpenDoor();
+            //puzzle_door.GetComponent<DoorController().OpenDoor();
+            puzzle_door.GetComponent<DoorPuzzle3A>().OpenDoor();
             for(int index = 0; index<puzzle_switches.Length; index++)
             {
                 puzzle_switches[index].GetComponent<DoorPuzzle1A>().DisableSwitch();

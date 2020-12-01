@@ -17,42 +17,71 @@ public class DoorController : MonoBehaviour
     public Material door_on_material; //MATERIAL OF THE DOOR ONCE IT IS ACTIVATED
 
     private bool canActivate; //WHETHER THE DOOR CAN BE ACTIVATED OR NOT
+    private bool doorActivated; //Whether the door HAS been activated 
 
     private string promptText;
     private const string interactButton = "A";
 
+    public Vector3 newPosition; // THE NEW POSITION
+    public float speed; // DOOR MOVEMENT SPEED
+    public bool initaliseSpeed; //TO SEE IF SPEED 0 IS INTENDED (see initalise())
+
     // Start is called before the first frame update
     void Start()
     {
+        initalise();
         GUIControl = GameObject.FindWithTag("GameController");
         player = GameObject.FindWithTag("Player");
-        //door = this.gameObject;
         promptText = "Press " + interactButton + " to activate the door";
-        canActivate = false;  
+        canActivate = false;
+        doorActivated = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(player.transform.position, door.transform.position) < 3)
+        if (doorActivated)
         {
-            GUIControl.GetComponent<GameController>().SetPrompt(promptText);
-            canActivate = true;
+            this.gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, speed);
+            if(this.gameObject.transform.position == newPosition)
+            {
+                gameObject.GetComponent<DoorController>().enabled = false;
+            }
         }
         else
         {
-            GUIControl.GetComponent<GameController>().SetPrompt("");
-            canActivate = false;
+            if (Vector3.Distance(player.transform.position, door.transform.position) < 3)
+            {
+                GUIControl.GetComponent<GameController>().SetPrompt(promptText);
+                canActivate = true;
+            }
+            else
+            {
+                GUIControl.GetComponent<GameController>().SetPrompt(""); //CLEAR THE PROMPT TEXT
+                canActivate = false; //IF USER IS FAR, THEY CAN'T ACTIVATE DOOR
+            }
+            if (canActivate == true && Input.GetKeyDown(KeyCode.A))
+            {
+                GUIControl.GetComponent<GameController>().SetPrompt(""); //CLEAR THE PROMPT TEXT
+                canActivate = false;   //IF USER IS FAR, THEY CAN'T ACTIVATE DOOR  
+                doorActivated = true; // THE DOOR HAS BEEN ACTIVATED
+                door.GetComponent<MeshRenderer>().material = door_on_material;
+            }
         }
-        if(canActivate == true && Input.GetKeyDown(KeyCode.A))
-        {
-            target = door.transform.position;
-            door.GetComponent<DoorController>().OpenDoor();
-            GUIControl.GetComponent<GameController>().SetPrompt("");
-            canActivate = false;
-            gameObject.GetComponent<DoorController>().enabled = false;
-        }
+        
 
+    }
+
+    void initalise()
+    {
+        if(newPosition == null)
+        {
+            newPosition = this.gameObject.transform.position; // IF NEW POSITION IS NOT SET, THE OBJECT WILL NOT MOVE
+        }
+        if(speed == 0 && initaliseSpeed == false)
+        {
+            speed = 2.0f; //IF NO SPEED IS SET, THEN SPEED IS ZERO
+        }
     }
 
 
@@ -63,12 +92,12 @@ public class DoorController : MonoBehaviour
      */ 
     public void OpenDoor()
     {
-        while (target.y < 20.0)
+        /*while (target.y < 20.0)
         {
             target.y += 0.5f;
             door.transform.position = Vector3.MoveTowards(door.transform.position, target, Time.deltaTime * 5f);
-        }
-        door.GetComponent<MeshRenderer>().material = door_on_material;
+        }*/
+        
     }
 
 }
