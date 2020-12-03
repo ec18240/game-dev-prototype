@@ -50,7 +50,7 @@ public class DoorController : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(player.transform.position, door.transform.position) < 3)
+            if (Vector3.Distance(player.transform.position, door.transform.position) < 6.5)
             {
                 GUIControl.GetComponent<GameController>().SetPrompt(promptText);
                 canActivate = true;

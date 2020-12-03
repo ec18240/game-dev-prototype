@@ -43,11 +43,15 @@ public class RampController : MonoBehaviour
             player.transform.position = Vector3.MoveTowards(player.transform.position, rampPathArray[index].transform.position, delta);
             if (getDistance() <= 1)
             {
+                UnityEngine.Debug.Log("INDEX BEFORE: " + index);
                 index++;
+                UnityEngine.Debug.Log("INDEX AFTER: " + index);
             }
         }
-        if (index >= rampPathArray.Length)
+        if (index >= rampPathArray.Length )
         {
+            UnityEngine.Debug.Log("INDEX AFTER (CLOSE): " + index);
+            rampActivate = false; //Close telepot/travel
             playerControl.SetPlayerControl(true); // Give the player back control once this segment is over
             Destroy(this.gameObject); //Once finished, destroy this object and all the children
             this.gameObject.GetComponent<RampController>().enabled = false; //Close script

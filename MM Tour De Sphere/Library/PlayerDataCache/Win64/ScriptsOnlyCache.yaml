@@ -64,12 +64,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -199,7 +193,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12414}
     - Class: 114
+      Script: {instanceID: 12428}
+    - Class: 114
       Script: {instanceID: 12456}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 114
       Script: {instanceID: 12718}
     - Class: 114
@@ -231,9 +229,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14714}
     - Class: 114
-      Script: {instanceID: 54716}
+      Script: {instanceID: 40664}
     - Class: 114
-      Script: {instanceID: 54754}
+      Script: {instanceID: 40704}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 122
@@ -783,7 +781,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: cde1cef63502590b2aa6cd73f6afd13f
+      Hash: 94a123e447f06a96ee026a0f1b0baf88
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishController
@@ -813,7 +811,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 2de7188c5ebfe14f6d1e7eb846f4ca50
+      Hash: a41b51e2175f7c659eab6e32263196a9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -1371,7 +1369,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 042a96a06238e3b4c2656a533ea9fa58
+      Hash: 4e3674c0ea125e3e6ec8380226b6fb5d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DoorPuzzle3A
@@ -1533,7 +1531,7 @@ ScriptsOnlyBuild:
     className: PostProcessVolume
   - hash:
       serializedVersion: 2
-      Hash: 042a96a06238e3b4c2656a533ea9fa58
+      Hash: 85ea82fc277a17e72bea086d2321f80d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DoorController
@@ -1729,5 +1727,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/SampleScene.unity
   - Assets/Scenes/Level 2 - Into the Pyramid.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: C:/Users/miah_/Desktop/Masud/QMUL/Multi-Platform Game Developement/Game
-    prototype builds/V5/MM Tour De Sphere.exe
+  playerPath: C:/Users/ashle/Documents/GameBuildV1/MM Tour De Sphere.exe

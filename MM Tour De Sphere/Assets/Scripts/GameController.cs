@@ -5,9 +5,11 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class GameController : MonoBehaviour
 {
     private GameObject current_player;
+    public GameObject finish_point;
 
     private int points; //points
     private int points_multiplier; //the multiplier
@@ -30,6 +32,9 @@ public class GameController : MonoBehaviour
     private bool text_disable; // if on, all text in game will be disabled (other than winText);
 
     private ArrayList powerUpList = new ArrayList();
+
+    public float lowerBound;
+
 
 
     // Start is called before the first frame update
@@ -61,6 +66,11 @@ public class GameController : MonoBehaviour
     }
 
     void CheckDead() {
+        if(current_player.transform.position.y <= lowerBound && finish_point.GetComponent<FinishController>().getFinish() == false)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (playerHealthText.text == "HEARTS: DEAD")
         {
             SceneManager.LoadScene(3, LoadSceneMode.Single);
