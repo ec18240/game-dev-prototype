@@ -113,7 +113,7 @@ public class BlockController : MonoBehaviour
         //UnityEngine.Debug.Log(this.gameObject.name + ": " + Vector3.Distance(player.transform.position, getLocation()));  
 
         //IF THE PLAYER IS LESS THAN 2 (I guess CM) AWAY FROM THE BLOCK, DISPLAY A PROMPT (THIS IS BUGGED, WILL FIX SOON)
-        if(Vector3.Distance(player.transform.position, getLocation()) < 2)
+        if(Vector3.Distance(player.transform.position, getLocation()) < 5)
         {
             //UnityEngine.Debug.Log("AYE");
             GUIControl.GetComponent<GameController>().SetPrompt("Press " + interactButton + " to interact with the block");
