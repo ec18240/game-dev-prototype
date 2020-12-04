@@ -229,9 +229,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14706}
     - Class: 114
-      Script: {instanceID: 47836}
+      Script: {instanceID: 63140}
     - Class: 114
-      Script: {instanceID: 47876}
+      Script: {instanceID: 63180}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 122
@@ -1703,4 +1703,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/SampleScene.unity
   - Assets/Scenes/Level 2 - Into the Pyramid.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: C:/Users/ashle/Documents/GameBuildV3/MM Tour De Sphere.exe
+  playerPath: C:/Users/ashle/Documents/GBV6/MM Tour De Sphere.exe
