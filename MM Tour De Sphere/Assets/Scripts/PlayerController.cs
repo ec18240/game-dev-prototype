@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     //IN A SCRIPTED EVENT, YOU DON'T WANT THE PLAYER TO HAVE CONTROL OF THE CHARACTER-MOVEMENT
     public bool playerInControl;
 
+    private bool strengthMode;
+
     /*  PLANNED ON MAKING IT SO WHEN THE MUMMY COLLIDES WITH A WALL
      *  THEY BOUNCE BACK
      *  I MAY ADD THIS LATER IN THE GAME AND MAKE ANOTHER SCRIPT CALLED
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour
         state = Form.Normal;
         playerInfo = player.transform;
         GUIControl = GameObject.FindWithTag("GameController");
+        strengthMode = false;
         
     }
 
@@ -127,6 +130,10 @@ public class PlayerController : MonoBehaviour
                 UnityEngine.Debug.Log("ENTER - HIT PLAYER");
                 TakeDamage();
             }
+            else
+            {
+                other.gameObject.GetComponent<BlockController>().SetDisable();
+            }
         }
 
         if(other.gameObject.tag == "HealthBlock")
@@ -158,7 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyBlock" && canDamage == true)
         {
-            if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
+            if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy && getStrength() == false)
             {
                 UnityEngine.Debug.Log("STAY - HIT PLAYER");
                 TakeDamage();
@@ -269,6 +276,16 @@ public class PlayerController : MonoBehaviour
     public float getHealth()
     {
         return health_hearts;
+    }
+
+    public void SetStrength(bool strength_value)
+    {
+        this.strengthMode = strength_value;
+    }
+
+    public bool getStrength()
+    {
+        return this.strengthMode;
     }
 
 }

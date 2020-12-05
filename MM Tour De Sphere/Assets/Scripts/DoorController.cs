@@ -84,20 +84,20 @@ public class DoorController : MonoBehaviour
         }
     }
 
-
-    /*I HAVE SINCE LEARNED A BETTER WAY TO IMPLEMENT THIS AS SEEN IN THE
-     * MOVERCONTROLLER SCRIPT THAT I WROTE
-     * I WILL USE THE IMPLEMENTATION THAT I MADE THERE AS A GUIDE
-     * FOR HOW TO IMPROVE ON THIS IMPLEMENTATION
-     */ 
-    public void OpenDoor()
+    public void OpenDoor() //OPEN DOOR
     {
-        /*while (target.y < 20.0)
-        {
-            target.y += 0.5f;
-            door.transform.position = Vector3.MoveTowards(door.transform.position, target, Time.deltaTime * 5f);
-        }*/
+        this.doorActivated = true;
+        this.canActivate = true;
+
         
+    }
+
+    public void OpenDoor(Vector3 newPosition) //OPEN DOOR AT POSITION <X>
+    {
+        this.newPosition = newPosition;
+        doorActivated = true;
+        this.canActivate = true;
+
     }
 
 }

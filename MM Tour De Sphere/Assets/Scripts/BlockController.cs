@@ -18,6 +18,7 @@ public class BlockController : MonoBehaviour
     private const string interactButton = "A";
 
     public static bool isUsed; //USED TO TELL IF CURRENT GAMEOBJECT IS IN USE, WILL IMPLEMENT LATER
+    private float radius_distance; //DISTANCE PLAYER MUST BE FROM THE BLOCK
 
     /*TYPE OF BLOCK THE BLOCK IS
      *HEALTH : THIS BLOCK WILL HEAL YOU
@@ -41,6 +42,7 @@ public class BlockController : MonoBehaviour
         setMode();
         setList();
         GUIControl = GameObject.FindWithTag("GameController");
+        radius_distance = 5.0f;
     }
 
     //DEAD METHOD, INITIALLY INTENDED TO GET LIST OF CHILDREN
@@ -93,6 +95,14 @@ public class BlockController : MonoBehaviour
         }
     }
 
+    public void SetDisable()
+    {
+        if(state == Mode.Enemy)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 
     //GET LOCATION OF CURRENT GAMEOBJECT
     public Vector3 getLocation()
@@ -112,8 +122,8 @@ public class BlockController : MonoBehaviour
     {
         //UnityEngine.Debug.Log(this.gameObject.name + ": " + Vector3.Distance(player.transform.position, getLocation()));  
 
-        //IF THE PLAYER IS LESS THAN 2 (I guess CM) AWAY FROM THE BLOCK, DISPLAY A PROMPT (THIS IS BUGGED, WILL FIX SOON)
-        if(Vector3.Distance(player.transform.position, getLocation()) < 5)
+        //IF THE PLAYER IS LESS THAN 5 (I guess CM) AWAY FROM THE BLOCK, DISPLAY A PROMPT (THIS IS BUGGED, WILL FIX SOON)
+        if(Vector3.Distance(player.transform.position, getLocation()) < radius_distance)
         {
             //UnityEngine.Debug.Log("AYE");
             GUIControl.GetComponent<GameController>().SetPrompt("Press " + interactButton + " to interact with the block");
