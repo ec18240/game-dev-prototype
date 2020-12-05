@@ -33,7 +33,9 @@ public class GameController : MonoBehaviour
 
     private ArrayList powerUpList = new ArrayList();
 
-    public float lowerBound;
+    public float lowerBound; //LOWEST Y-AXIS PLAYER CAN BE BEFORE THEY DIE 
+
+    private CheckPointController currentCheckpointData; //KEEPS TRACK OF THE CURRENT CHECKPOINT
 
 
 
@@ -68,13 +70,50 @@ public class GameController : MonoBehaviour
     void CheckDead() {
         if(current_player.transform.position.y <= lowerBound && finish_point.GetComponent<FinishController>().getFinish() == false)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if(this.currentCheckpointData == null)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else
+            {
+                if (this.currentCheckpointData.GetLives() <= 0)
+                {
+                    SceneManager.LoadScene(3, LoadSceneMode.Single);
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    this.currentCheckpointData.RespawnPlayer();
+                    current_player.GetComponent<PlayerController>().SetHealth(3.0f);
+                    displayText();
+                }
+            }
+            
         }
 
         if (playerHealthText.text == "HEARTS: DEAD")
         {
-            SceneManager.LoadScene(3, LoadSceneMode.Single);
-            Cursor.lockState = CursorLockMode.None;
+            if(this.currentCheckpointData != null)
+            {
+                if(this.currentCheckpointData.GetLives() <= 0)
+                {
+                    //UnityEngine.Debug.Log("NUMBER OF LIVES: " + this.currentCheckpointData.GetLives());
+                    SceneManager.LoadScene(3, LoadSceneMode.Single);
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    this.currentCheckpointData.RespawnPlayer();
+                    current_player.GetComponent<PlayerController>().SetHealth(3.0f);
+                    displayText();
+                }
+            }
+            else
+            {
+                SceneManager.LoadScene(3, LoadSceneMode.Single);
+                Cursor.lockState = CursorLockMode.None;
+            }
+            
         }
 
     }
@@ -194,6 +233,7 @@ public class GameController : MonoBehaviour
     string getHealth()
     {
         float amount = current_player.GetComponent<PlayerController>().getHealth();
+        UnityEngine.Debug.Log(amount);
         switch (amount)
         {
             case 3.0f: return "<3 <3 <3";
@@ -238,5 +278,15 @@ public class GameController : MonoBehaviour
     public void DisplayWin() //DISPLAYS THE WIN TEXT
     {
         winText.text = "FINISH LINE REACHED! \n" + getTimer() + " SECONDS \n" + this.points + " POINTS\n" + getResult() + " FINAL POINTS (x" + this.points_multiplier + " MULTIPLIER BONUS)";
+    }
+
+    public void SetCheckPointData(CheckPointController checkpointData)
+    {
+        this.currentCheckpointData = checkpointData;
+    }
+
+    CheckPointController GetCheckPointData()
+    {
+        return this.currentCheckpointData;
     }
 }

@@ -93,6 +93,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Takes player to a new position without Teleport Controller
+    public void NewPosition(Vector3 newPosition)
+    {
+        this.gameObject.transform.position = newPosition;
+    }
+
+    //Takes player to a new position without Teleport Controller
+    public void NewRotation(Quaternion newRotation)
+    {
+        this.gameObject.transform.rotation = newRotation;
+    }
+
     void FixedUpdate()
     {
         if(playerInControl == true)
@@ -127,7 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
             {
-                UnityEngine.Debug.Log("ENTER - HIT PLAYER");
+                //UnityEngine.Debug.Log("ENTER - HIT PLAYER");
                 TakeDamage();
             }
             else
@@ -150,11 +162,11 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        UnityEngine.Debug.Log(canDamage);
+        //UnityEngine.Debug.Log(canDamage);
         health_hearts -= red_damage;
         canDamage = false;
         damageCoolDown = damageCoolDown_Reset;
-        UnityEngine.Debug.Log("TAKE DAMAGE");
+        //UnityEngine.Debug.Log("TAKE DAMAGE");
         ReportToGUI();
     }
     /* WHEN THE CHARACTER STAYS COLLIDED
@@ -167,7 +179,7 @@ public class PlayerController : MonoBehaviour
         {
             if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy && getStrength() == false)
             {
-                UnityEngine.Debug.Log("STAY - HIT PLAYER");
+                //UnityEngine.Debug.Log("STAY - HIT PLAYER");
                 TakeDamage();
             }
             
@@ -208,7 +220,6 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFSmallScale, playerInfo.localScale.y * JFSmallScale, playerInfo.localScale.y * JFSmallScale);
             jumpForce *= JFSmallScale;
-            //player.GetComponent<Halo>().size() *= JFSmallScale;
             state = Form.Small;
             
         }
@@ -216,7 +227,6 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFNormalScale, playerInfo.localScale.y * JFNormalScale, playerInfo.localScale.y * JFNormalScale);
             jumpForce *= JFSmallScale;
-            //player.GetComponent<Halo>().size *= JFNormalScale;
             state = Form.Normal;
         }
     }
@@ -276,6 +286,11 @@ public class PlayerController : MonoBehaviour
     public float getHealth()
     {
         return health_hearts;
+    }
+
+    public void SetHealth(float health)
+    {
+        this.health_hearts = health;
     }
 
     public void SetStrength(bool strength_value)
