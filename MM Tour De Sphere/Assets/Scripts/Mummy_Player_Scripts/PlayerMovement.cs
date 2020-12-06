@@ -62,17 +62,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        //RotatePlayer();
-        movementVector.y -= gravity;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SoundManagerScript.PlaySound("Jump");
-            movementVector.y = jumpspeed;
-
-        }
         controller.Move(movementVector * Time.deltaTime);
-
+        if (Input.GetKeyDown(KeyCode.Space)) //
+        {
+            if (controller.isGrounded == true)
+            {
+                SoundManagerScript.PlaySound("Jump");
+                movementVector.y = jumpspeed;
+            }
+        }
+        else
+        {
+            movementVector.y -= gravity;
+        }
     }
-
-
-}
+    }
