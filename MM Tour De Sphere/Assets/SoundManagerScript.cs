@@ -19,7 +19,6 @@ public class SoundManagerScript : MonoBehaviour
         fallingSpears = Resources.Load<AudioClip>("SpearsHittingGround");
         takingDamage = Resources.Load<AudioClip>("TakingDamage");
         teleport = Resources.Load<AudioClip>("Teleport");
-        teleport = Resources.Load<AudioClip>("Teleport");
         checkPoint = Resources.Load<AudioClip>("checkpoint");
         health = Resources.Load<AudioClip>("Health");
         switchBtn = Resources.Load<AudioClip>("SwitchBtn");
