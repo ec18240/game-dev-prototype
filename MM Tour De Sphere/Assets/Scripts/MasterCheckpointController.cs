@@ -13,16 +13,10 @@ public class MasterCheckpointController : MonoBehaviour
     private GameObject gameControl; //GAMECONTROLLER
     private GameController gameControlScript; //SCRIPT FOR GAMECONTROLLER
 
-    // Start is called before the first frame update
-    void Start()
+    //METHOD CALLED BEFORE START METHOD, TRIED THIS FOR OPTIMISATION
+    void Awake()
     {
         initialise();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void initialise()
@@ -36,7 +30,7 @@ public class MasterCheckpointController : MonoBehaviour
     {
         GameObject newCheckpoint = checkpoints[checkpointIndex];
         CheckPointController newCheckpointData = GetCheckpointData(newCheckpoint);
-        gameControlScript.SetCheckPointData(newCheckpointData);
+        
 
         if(current_checkpoint == null)
         {
@@ -53,6 +47,8 @@ public class MasterCheckpointController : MonoBehaviour
             SetCheckPointData(newCheckpoint); 
 
         }
+        gameControlScript.SetCheckPointData(newCheckpointData);
+        gameControlScript.displayText();
 
     }
 

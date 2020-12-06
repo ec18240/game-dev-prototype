@@ -5,10 +5,12 @@ using UnityEngine;
 public class CheckPointController : MonoBehaviour
 {
     public GameObject player; //PLAYER THAT TRIGGERS THE CHECKPOINT
-    private string checkpointName; //NAME OF THE CHECKPOINT
+    public string checkpointName; //NAME OF THE CHECKPOINT
     private bool checkActivated; //WHETHER THE CHECKPOINT IS ACTIVATED OR NOT
     private int checkpointLives; //AMOUNT OF LIVES A CHECKPOINT OFFERS
 
+    public GameObject checkpointBulb; //ACTIVATES WHEN THE CHECKPOINT IS ACTIVE
+    public Material [] bulbMaterial; //MATERIALS ON THE BULB
     public Transform respawn; //PLACE THE CHARACTER WILL RESPAWN
     private Vector3 respawnPoint; //COORDINATES OF RESPAWN
 
@@ -17,9 +19,7 @@ public class CheckPointController : MonoBehaviour
     public MasterCheckpointController masterCheckpoint; //GETS CHECKPOINT MASTER
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         initalise();
     }
@@ -30,10 +30,16 @@ public class CheckPointController : MonoBehaviour
         this.checkpointLives = 3;
     }
 
-    // Update is called once per frame
-    void Update()
+    void SwitchBulb(bool bulbswitch)
     {
-        
+        if(bulbswitch == true)
+        {
+            checkpointBulb.GetComponent<MeshRenderer>().material = bulbMaterial[1]; //BLUE MATERIAL
+        }
+        else
+        {
+            checkpointBulb.GetComponent<MeshRenderer>().material = bulbMaterial[0]; //DEAD OBJECT MATERIAL (BLACK)
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -41,24 +47,15 @@ public class CheckPointController : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             SoundManagerScript.PlaySound("checkpoint");
-            print("Checkpoint Hit");
             masterCheckpoint.SetActiveCheckpoint(this.checkPointID);
             masterCheckpoint.SetCheckPointData(this.gameObject);
         }
     }
 
-    void print(string text)
-    {
-        UnityEngine.Debug.Log(text);
-    }
-
     public void RespawnPlayer()
     {
         SetLives(this.checkpointLives - 1); //LIVES DECREASED BY 1
-        print("NUMBER OF LIVES: " + this.checkpointLives);
-        print("CHECKPOINT ID: " + GetID());
-        print(respawnPoint);
-        player.GetComponent<PlayerController>().NewPosition(respawnPoint);
+        player.GetComponent<PlayerController>().NewPosition(this.respawnPoint);
         player.GetComponent<PlayerController>().NewRotation(new Quaternion(0.0f,0.0f,0.0f,1.0f));
 
     }
@@ -81,6 +78,7 @@ public class CheckPointController : MonoBehaviour
     public void SetActivate(bool activation)
     {
         this.checkActivated = activation;
+        SwitchBulb(activation);
     }
 
     //GETS THE ACTIVATION BOOL
@@ -99,6 +97,11 @@ public class CheckPointController : MonoBehaviour
     void SetLives(int lives)
     {
         this.checkpointLives = lives;
+    }
+
+    public string GetName()
+    {
+        return this.checkpointName;
     }
 
 }

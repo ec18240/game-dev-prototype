@@ -22,8 +22,12 @@ public class GameController : MonoBehaviour
     public Text playerHealthText;
     public Text winText;
     public Text powerUpText; //Displays the current powerUp
+    public Text checkpointText; //Displays checkpoint information
+    public Text timerText; //Displays Timer
 
-    private float gameTimer;
+    private float gameTimer; //ONGOING TIME
+    private bool isFinished; //WHETHER THE GAME IS FINISHED
+    private string finalTime; //TIME USER GETS IN THE RACE
 
     private string multiplierText;
 
@@ -64,6 +68,7 @@ public class GameController : MonoBehaviour
         gameTimer += Time.deltaTime;
         checkMultiplier();
         CheckDead();
+        DisplayTime();
 
     }
 
@@ -173,14 +178,15 @@ public class GameController : MonoBehaviour
         if(text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
         {
             scoreText.text = "POINTS: " + this.points + getMultiplier();
-            if (currentCheckpointData != null)
+            playerHealthText.text = "HEARTS: " + getHealth().ToString();
+            if(currentCheckpointData != null)
             {
-                playerHealthText.text = "CHECKPOINT LIVES: " + currentCheckpointData.GetLives().ToString() +
-                    "| HEARTS: " + getHealth().ToString();
+                checkpointText.text =   "CHECKPOINT: " + currentCheckpointData.GetName() +
+                                        "\nCHECKPOINT LIVES: " + currentCheckpointData.GetLives().ToString();
             }
             else
             {
-                playerHealthText.text = "HEARTS: " + getHealth().ToString();
+                checkpointText.text = "CHECKPOINT: \nCHECKPOINT LIVES: " + 0;
             }
             
         }
@@ -189,7 +195,11 @@ public class GameController : MonoBehaviour
 
     public void DisplayTime() //EVENTUALLY USED TO DISPLAY TIME IN THE GAME, WILL IMPLEMENT IN FULL VERSION (Ashley)
     {
-
+        if (isFinished)
+        {
+            return;
+        }
+        timerText.text = Math.Round(this.gameTimer, 1).ToString();
     }
 
     /*
@@ -261,6 +271,7 @@ public class GameController : MonoBehaviour
             promptText.text = "";
             multiplierText = "";
             playerHealthText.text = "";
+            checkpointText.text = "";
             text_disable = true;
         }
         else
@@ -278,7 +289,10 @@ public class GameController : MonoBehaviour
 
     public void DisplayWin() //DISPLAYS THE WIN TEXT
     {
-        winText.text = "FINISH LINE REACHED! \n" + getTimer() + " SECONDS \n" + this.points + " POINTS\n" + getResult() + " FINAL POINTS (x" + this.points_multiplier + " MULTIPLIER BONUS)";
+        finalTime = getTimer().ToString(); //VARIABLE USED SO WINTEXT AND TIMERTEXT HAVE THE SAME TIME IN RUNTIME
+        timerText.text = finalTime;
+        winText.text = "FINISH LINE REACHED! \n" + finalTime + " SECONDS \n" + this.points + " POINTS\n" + getResult() + " FINAL POINTS (x" + this.points_multiplier + " MULTIPLIER BONUS)";
+        isFinished = true;
     }
 
     public void SetCheckPointData(CheckPointController checkpointData)
@@ -289,5 +303,16 @@ public class GameController : MonoBehaviour
     CheckPointController GetCheckPointData()
     {
         return this.currentCheckpointData;
+    }
+
+    //GETS THE AMOUNT OF LIVES THE CURRENT CHECKPOINT HAS
+    public int GetCheckpointLives()
+    {
+        if(GetCheckPointData() != null)
+        {
+            GetCheckPointData().GetLives();
+        }
+        return 0;
+        
     }
 }
