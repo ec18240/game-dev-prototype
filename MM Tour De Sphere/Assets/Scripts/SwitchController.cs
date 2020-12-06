@@ -63,6 +63,7 @@ public class SwitchController : MonoBehaviour
         }
         if(switchCount == switchCountMax)
         {
+            SoundManagerScript.PlaySound("DoorsOpen");
             Destroy(Gate);
         }
             

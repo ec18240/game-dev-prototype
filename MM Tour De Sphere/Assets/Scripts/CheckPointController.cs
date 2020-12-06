@@ -40,6 +40,7 @@ public class CheckPointController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("checkpoint");
             print("Checkpoint Hit");
             masterCheckpoint.SetActiveCheckpoint(this.checkPointID);
             masterCheckpoint.SetCheckPointData(this.gameObject);

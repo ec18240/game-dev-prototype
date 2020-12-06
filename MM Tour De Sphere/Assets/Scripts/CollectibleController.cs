@@ -32,6 +32,7 @@ public class CollectibleController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("CollectingPoints");
             GUIControl.GetComponent<GameController>().AddPoints(collectible_amount);
             switchLeader.GetComponent<SwitchController>().Heartbeat();
 
