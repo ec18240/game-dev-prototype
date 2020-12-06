@@ -39,6 +39,7 @@ public class DoorPuzzle3A : MonoBehaviour
             this.gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, doorMovementSpeed);
             if (this.gameObject.transform.position == newPosition)
             {
+                SoundManagerScript.PlaySound("DoorsOpen");
                 gameObject.GetComponent<DoorPuzzle3A>().enabled = false;
             }
         }

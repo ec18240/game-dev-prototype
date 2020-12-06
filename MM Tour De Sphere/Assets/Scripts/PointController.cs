@@ -27,6 +27,7 @@ public class PointController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("CollectingPoints");
             GUIControl.GetComponent<GameController>().AddPoints(point_amount);
             Destroy(this.gameObject);
         }

@@ -141,6 +141,7 @@ public class BlockController : MonoBehaviour
         // MAKE A SEPARATE BLOCK CONTROLLER AND LEAVE THE PARTS THAT ALL BLOCKS HAVE IN THIS CODE
 
         if(canActivate == true && Input.GetKeyDown(KeyCode.A)){
+            SoundManagerScript.PlaySound("SwitchBtn");
             GUIControl.GetComponent<GameController>().SetPrompt("");
             gameObject.GetComponent<SwitchBlockController>().SwitchActivate();
             canActivate = false;

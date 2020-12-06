@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "HealthBlock")
         {
+            SoundManagerScript.PlaySound("Health");
             health_hearts = health_hearts_reset;
             ReportToGUI();
         }
@@ -173,6 +174,7 @@ public class PlayerController : MonoBehaviour
         health_hearts -= red_damage;
         canDamage = false;
         damageCoolDown = damageCoolDown_Reset;
+        SoundManagerScript.PlaySound("TakingDamage");
         ReportToGUI();
     }
 
@@ -184,7 +186,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyBlock" && canDamage == true)
         {
-            if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy && getStrength() == false)
+            if (other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy && getStrength() == false)
             {
                 TakeDamage();
             }
@@ -223,6 +225,7 @@ public class PlayerController : MonoBehaviour
 
         if(state == Form.Normal) // CHARACTER TURNS SMALL
         {
+            SoundManagerScript.PlaySound("Shrinking");
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFSmallScale, playerInfo.localScale.y * JFSmallScale, playerInfo.localScale.y * JFSmallScale);
             jumpForce *= JFSmallScale;
             state = Form.Small;
@@ -230,6 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(state == Form.Small) //CHARACTER TURNS BIG
         {
+            SoundManagerScript.PlaySound("Growing");
             player.transform.localScale = new Vector3(playerInfo.localScale.x * JFNormalScale, playerInfo.localScale.y * JFNormalScale, playerInfo.localScale.y * JFNormalScale);
             jumpForce *= JFSmallScale;
             state = Form.Normal;
@@ -245,6 +249,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
             {
                 rigidBodyScript.velocity = rigidBodyScript.velocity + jump;
+                SoundManagerScript.PlaySound("Jump");
                 playerGrounded = false;
             }
             if (Input.GetKeyDown(KeyCode.LeftShift))

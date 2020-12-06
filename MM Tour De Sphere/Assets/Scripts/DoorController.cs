@@ -62,6 +62,7 @@ public class DoorController : MonoBehaviour
             }
             if (canActivate == true && Input.GetKeyDown(KeyCode.A))
             {
+                SoundManagerScript.PlaySound("DoorsOpen");
                 GUIControl.GetComponent<GameController>().SetPrompt(""); //CLEAR THE PROMPT TEXT
                 canActivate = false;   //IF USER IS FAR, THEY CAN'T ACTIVATE DOOR  
                 doorActivated = true; // THE DOOR HAS BEEN ACTIVATED

@@ -65,6 +65,7 @@ public class MagnetController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("PowerUp");
             this.gameObject.layer = 8;
             GameGUIControl.AddPoints(500);
             GameGUIControl.AddPowerUp(powerUpName);

@@ -39,6 +39,7 @@ public class DoorPuzzle1A : MonoBehaviour
         UnityEngine.Debug.Log("OBJECT HIT ");
         if (other.gameObject.tag == "Player")
         {
+            SoundManagerScript.PlaySound("SwitchBtn");
             UnityEngine.Debug.Log("HMMMMMM ");
             timer_active = true;
             if(canTurnOn == true)

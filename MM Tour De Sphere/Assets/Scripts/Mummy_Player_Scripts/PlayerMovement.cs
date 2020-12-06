@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         movementVector.y -= gravity;
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            SoundManagerScript.PlaySound("Jump");
             movementVector.y = jumpspeed;
 
         }
