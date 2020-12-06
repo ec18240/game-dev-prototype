@@ -53,8 +53,8 @@ public class RampController : MonoBehaviour
             UnityEngine.Debug.Log("INDEX AFTER (CLOSE): " + index);
             rampActivate = false; //Close telepot/travel
             playerControl.SetPlayerControl(true); // Give the player back control once this segment is over
-            Destroy(this.gameObject); //Once finished, destroy this object and all the children
-            this.gameObject.GetComponent<RampController>().enabled = false; //Close script
+            //Destroy(this.gameObject); //Once finished, destroy this object and all the children
+            //this.gameObject.GetComponent<RampController>().enabled = false; //Close script
         }
     }
 
@@ -67,6 +67,7 @@ public class RampController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            index = 0;
             rampActivate = true;
             playerControl.SetPlayerControl(false); //Give the player no control during this scripted event
         }

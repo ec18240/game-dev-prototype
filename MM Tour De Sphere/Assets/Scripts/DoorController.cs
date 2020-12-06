@@ -93,6 +93,11 @@ public class DoorController : MonoBehaviour
         
     }
 
+    public void updatePlayer(GameObject newPlayer)
+    {
+        this.player = newPlayer; //NEW PLAYER CONTROLS THE DOORS
+    }
+
     public void OpenDoor(Vector3 newPosition) //OPEN DOOR AT POSITION <X>
     {
         this.newPosition = newPosition;
