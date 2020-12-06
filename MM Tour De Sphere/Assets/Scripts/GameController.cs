@@ -173,7 +173,16 @@ public class GameController : MonoBehaviour
         if(text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
         {
             scoreText.text = "POINTS: " + this.points + getMultiplier();
-            playerHealthText.text = "HEARTS: " + getHealth().ToString();
+            if (currentCheckpointData != null)
+            {
+                playerHealthText.text = "CHECKPOINT LIVES: " + currentCheckpointData.GetLives().ToString() +
+                    "| HEARTS: " + getHealth().ToString();
+            }
+            else
+            {
+                playerHealthText.text = "HEARTS: " + getHealth().ToString();
+            }
+            
         }
 
     }
