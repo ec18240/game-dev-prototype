@@ -7,10 +7,17 @@ public class SwitchCharacterEvent : MonoBehaviour
     public GameObject current_player; // CURRENT PLAYER
     public GameObject current_camera; //CURRENT CAMERA
     public GameObject switch_player; //THE PLAYER YOU ARE SWITCHING TO
-    public GameObject free_look;
+    public GameObject free_look; //FREE LOOK CAMERA FOR THE MUMMY
     public GameObject switch_camera; //CAMERA WE ARE SWITCHING TO
+    public GameObject gameControl; //GAMECONTROLLER
+    private GameController gameControlScript; //SCRIPT FROM GAME CONTROLLER (CACHE)
 
     public GameObject[] updateDoors; //DOORS THAT NEED TO ACKNOWLEDGE NEW PLAYER
+
+    void Awake()
+    {
+        gameControlScript = gameControl.GetComponent<GameController>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,5 +44,6 @@ public class SwitchCharacterEvent : MonoBehaviour
         {
             updateDoors[index].GetComponent<DoorController>().updatePlayer(switch_player); //ALL AFFECTED OBJECTS SHOULD HAVE THIS METHOD
         }
+        gameControlScript.updatePlayer(switch_player);
     }
 }

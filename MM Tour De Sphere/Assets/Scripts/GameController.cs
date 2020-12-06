@@ -315,4 +315,9 @@ public class GameController : MonoBehaviour
         return 0;
         
     }
+
+    public void updatePlayer(GameObject newPlayer)
+    {
+        this.current_player = newPlayer; //NEW PLAYER CONTROLS THE DOORS
+    }
 }
