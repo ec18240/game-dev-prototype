@@ -84,27 +84,26 @@ public class GameController : MonoBehaviour
                 else
                 {
                     this.currentCheckpointData.RespawnPlayer();
-                    current_player.GetComponent<PlayerController>().SetHealth(3.0f);
+                    current_player.GetComponent<PlayerController>().SetHealth(5.0f);
                     displayText();
                 }
             }
             
         }
 
-        if (playerHealthText.text == "HEARTS: DEAD")
+        if (getHealth() <= 0.0f)
         {
             if(this.currentCheckpointData != null)
             {
                 if(this.currentCheckpointData.GetLives() <= 0)
                 {
-                    //UnityEngine.Debug.Log("NUMBER OF LIVES: " + this.currentCheckpointData.GetLives());
                     SceneManager.LoadScene(3, LoadSceneMode.Single);
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
                     this.currentCheckpointData.RespawnPlayer();
-                    current_player.GetComponent<PlayerController>().SetHealth(3.0f);
+                    current_player.GetComponent<PlayerController>().SetHealth(5.0f);
                     displayText();
                 }
             }
@@ -174,7 +173,7 @@ public class GameController : MonoBehaviour
         if(text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
         {
             scoreText.text = "POINTS: " + this.points + getMultiplier();
-            playerHealthText.text = "HEARTS: " + getHealth();
+            playerHealthText.text = "HEARTS: " + getHealth().ToString();
         }
 
     }
@@ -230,17 +229,10 @@ public class GameController : MonoBehaviour
         points_multiplier = new_multiplier;
     }
 
-    string getHealth()
+    float getHealth()
     {
         float amount = current_player.GetComponent<PlayerController>().getHealth();
-        UnityEngine.Debug.Log(amount);
-        switch (amount)
-        {
-            case 3.0f: return "<3 <3 <3";
-            case 2.0f: return "<3 <3";
-            case 1.0f: return "<3";
-            default: return "DEAD";
-        }
+        return amount;
     }
 
     public void SetPrompt(string text)

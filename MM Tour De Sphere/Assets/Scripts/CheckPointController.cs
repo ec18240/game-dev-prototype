@@ -58,7 +58,7 @@ public class CheckPointController : MonoBehaviour
         print("CHECKPOINT ID: " + GetID());
         print(respawnPoint);
         player.GetComponent<PlayerController>().NewPosition(respawnPoint);
-        //player.GetComponent<PlayerController>().NewRotation(new Quaternion(0.0f,0.0f,0.0f,1.0f));
+        player.GetComponent<PlayerController>().NewRotation(new Quaternion(0.0f,0.0f,0.0f,1.0f));
 
     }
 

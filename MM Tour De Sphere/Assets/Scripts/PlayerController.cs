@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject player;
+    private Rigidbody rigidBodyScript;
     private GameObject GUIControl;
+    private GameController gameControlScript;
 
     private const float speedReset = 450.0f;
     public float speed;
@@ -34,7 +36,8 @@ public class PlayerController : MonoBehaviour
 
 
     //PLAYER HEALTH/DAMAGE VARIABLES
-    private float health_hearts = 3.0f; //Player by default has 3 hearts
+    private float health_hearts = 5.0f; //Player by default has 5 hearts
+    private const float health_hearts_reset = 5.0f; //Max health player has (for reset)
     private const float red_damage = 1.0f; //When the player gets damaged, he loses 1 health
 
 
@@ -65,6 +68,13 @@ public class PlayerController : MonoBehaviour
         Small
     }
 
+    void Awake()
+    {
+        rigidBodyScript = GetComponent<Rigidbody>();
+        GUIControl = GameObject.FindWithTag("GameController");
+        gameControlScript = GUIControl.GetComponent<GameController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +83,6 @@ public class PlayerController : MonoBehaviour
         jump = new Vector3(0.0f,jumpForce, 0.0f);
         state = Form.Normal;
         playerInfo = player.transform;
-        GUIControl = GameObject.FindWithTag("GameController");
         strengthMode = false;
         
     }
@@ -113,7 +122,7 @@ public class PlayerController : MonoBehaviour
             float verAxis = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(horAxis, 0.0f, verAxis);
 
-            GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+            rigidBodyScript.AddForce(movement * speed * Time.fixedDeltaTime);
         }
         
         
@@ -139,7 +148,6 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy)
             {
-                //UnityEngine.Debug.Log("ENTER - HIT PLAYER");
                 TakeDamage();
             }
             else
@@ -150,25 +158,24 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "HealthBlock")
         {
-            health_hearts = 3.0f;
+            health_hearts = health_hearts_reset;
             ReportToGUI();
         }
     }
     /*
      * WHEN THE PLAYER COLLIDES WITH AN ENEMY BLOCK
      * THEY TAKE DAMAGE AND THEN THE HEALTH IS REPORTED
-     * BACK TO THE GUI WHICH IS CONTROLLED BY THE GAMECONTROLLER WHICH IS VARIABLE GUICONTROL
+     * BACK TO THE GUI WHICH IS CONTROLLED BY THE GAMECONTROLSCRIPT
      */
 
     public void TakeDamage()
     {
-        //UnityEngine.Debug.Log(canDamage);
         health_hearts -= red_damage;
         canDamage = false;
         damageCoolDown = damageCoolDown_Reset;
-        //UnityEngine.Debug.Log("TAKE DAMAGE");
         ReportToGUI();
     }
+
     /* WHEN THE CHARACTER STAYS COLLIDED
      * WITH THE ENEMY BLOCKS, THEY CONTINUE TO LOSE DAMAGE
      */
@@ -179,7 +186,6 @@ public class PlayerController : MonoBehaviour
         {
             if(other.gameObject.GetComponent<BlockController>().getMode() == BlockController.Mode.Enemy && getStrength() == false)
             {
-                //UnityEngine.Debug.Log("STAY - HIT PLAYER");
                 TakeDamage();
             }
             
@@ -187,13 +193,12 @@ public class PlayerController : MonoBehaviour
     }
     
     /*
-     * THE GUICONTROL VARIABLE WHICH HAS THE GAMECONTROLLER 
-     * REPORTS BACK TO THE GUI
+     * GAMECONTROLSCRIPT REPORTS BACK TO THE GUI
      */
 
     void ReportToGUI()
     {
-        GUIControl.GetComponent<GameController>().displayText();
+        gameControlScript.displayText();
     }
 
     /*PUT A JUMP COOLDOWN BECAUSE THE PLAYER
@@ -239,7 +244,7 @@ public class PlayerController : MonoBehaviour
             //IF THE USER US GROUNDED AND PRESSES THE SPACE_BAR, THEY CAN JUMP
             if (Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
             {
-                player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity + jump;
+                rigidBodyScript.velocity = rigidBodyScript.velocity + jump;
                 playerGrounded = false;
             }
             if (Input.GetKeyDown(KeyCode.LeftShift))
