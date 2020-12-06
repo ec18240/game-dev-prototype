@@ -5,5 +5,5 @@ Mummy Character: https://assetstore.unity.com/packages/3d/characters/free-mummy-
 
 
 
-audio assets: 
+audio assets:
 
