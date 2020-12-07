@@ -2,8 +2,13 @@ external game assets reused:
 
 Mummy Character: https://assetstore.unity.com/packages/3d/characters/free-mummy-monster-134212
 
+Desert Kits 64 Sample: https://assetstore.unity.com/packages/3d/environments/landscapes/desert-kits-64-sample-86482
 
+Farland Skies - Cloudy Crown: https://assetstore.unity.com/packages/2d/textures-materials/sky/farland-skies-cloudy-crown-60004
 
+World Materials Free: https://assetstore.unity.com/packages/2d/textures-materials/world-materials-free-150182
+
+textmesh pro assets: https://assetstore.unity.com/packages/tools/utilities/text-to-textmesh-pro-upgrade-tool-176732
 
 audio assets:
 
