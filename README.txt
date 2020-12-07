@@ -24,3 +24,5 @@ Checkpoint: https://www.youtube.com/watch?v=DcxxHlKb3DI&ab_channel=NathanMatusTh
 Collecting Points: https://www.youtube.com/watch?v=z9ophJd72MY&ab_channel=SFXSoundEffects 
 
 Switch: https://www.youtube.com/watch?v=LcSxuXDCeDU&ab_channel=TheFkksounds 
+
+READ THE CHEAT SHEET (INSTRUCTIONS) FOR THE INSTRUCTIONS
