@@ -28,3 +28,7 @@ Switch: https://www.youtube.com/watch?v=LcSxuXDCeDU&ab_channel=TheFkksounds
 READ THE CHEAT SHEET (INSTRUCTIONS) FOR THE INSTRUCTIONS
 
 The game name is "Mummy Run: The Last Sarcophagus" - Didn't know how to change the name in repository!
+
+NOTE: THE GAME RUNS BETTER IN UNITY EDITOR RATHER THAN BUILD
+
+Edit -> Project settings -> Quality -> LOW for PERFORMANCE MODE, HIGH/ULTRA for QUALITY MODE
