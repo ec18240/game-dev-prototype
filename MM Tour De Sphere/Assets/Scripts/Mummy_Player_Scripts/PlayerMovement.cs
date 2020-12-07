@@ -76,4 +76,4 @@ public class PlayerMovement : MonoBehaviour
             movementVector.y -= gravity;
         }
     }
-    }
+}

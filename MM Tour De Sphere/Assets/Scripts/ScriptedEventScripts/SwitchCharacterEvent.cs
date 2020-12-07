@@ -21,7 +21,7 @@ public class SwitchCharacterEvent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             SwitchPlayer();
         }
@@ -40,7 +40,7 @@ public class SwitchCharacterEvent : MonoBehaviour
 
     void alertObjects()
     {
-        for(int index = 0; index<updateDoors.Length; index++)
+        for (int index = 0; index < updateDoors.Length; index++)
         {
             updateDoors[index].GetComponent<DoorController>().updatePlayer(switch_player); //ALL AFFECTED OBJECTS SHOULD HAVE THIS METHOD
         }

@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameOverMenu : MonoBehaviour
 {
+
     public void RetryGame()
     {
-
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 

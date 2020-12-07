@@ -43,7 +43,7 @@ public class DoorController : MonoBehaviour
         if (doorActivated)
         {
             this.gameObject.transform.position = Vector3.MoveTowards(transform.position, newPosition, speed);
-            if(this.gameObject.transform.position == newPosition)
+            if (this.gameObject.transform.position == newPosition)
             {
                 gameObject.GetComponent<DoorController>().enabled = false;
             }
@@ -69,17 +69,17 @@ public class DoorController : MonoBehaviour
                 door.GetComponent<MeshRenderer>().material = door_on_material;
             }
         }
-        
+
 
     }
 
     void initalise()
     {
-        if(newPosition == null)
+        if (newPosition == null)
         {
             newPosition = this.gameObject.transform.position; // IF NEW POSITION IS NOT SET, THE OBJECT WILL NOT MOVE
         }
-        if(speed == 0 && initaliseSpeed == false)
+        if (speed == 0 && initaliseSpeed == false)
         {
             speed = 2.0f; //IF NO SPEED IS SET, THEN SPEED IS ZERO
         }
@@ -90,7 +90,7 @@ public class DoorController : MonoBehaviour
         this.doorActivated = true;
         this.canActivate = true;
 
-        
+
     }
 
     public void updatePlayer(GameObject newPlayer)

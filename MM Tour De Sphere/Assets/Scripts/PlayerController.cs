@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     private bool strengthMode;
 
+    public static bool GamePaused = false;
+    public GameObject MenuPauseUI;
+
     /*  PLANNED ON MAKING IT SO WHEN THE MUMMY COLLIDES WITH A WALL
      *  THEY BOUNCE BACK
      *  I MAY ADD THIS LATER IN THE GAME AND MAKE ANOTHER SCRIPT CALLED
@@ -243,7 +246,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerInControl == true)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GamePaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+        if (playerInControl == true)
         {
             //IF THE USER US GROUNDED AND PRESSES THE SPACE_BAR, THEY CAN JUMP
             if (Input.GetKeyDown(KeyCode.Space) && playerGrounded == true)
@@ -262,6 +276,7 @@ public class PlayerController : MonoBehaviour
             }
             jumpCoolDown -= Time.deltaTime;
             damageCoolDown -= Time.deltaTime;
+
         }
         
         
@@ -311,6 +326,22 @@ public class PlayerController : MonoBehaviour
     public bool getStrength()
     {
         return this.strengthMode;
+    }
+
+    void ResumeGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        MenuPauseUI.SetActive(false);
+        Time.timeScale = 1f;
+        GamePaused = false;
+    }
+
+    void PauseGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        MenuPauseUI.SetActive(true);
+        Time.timeScale = 0f;
+        GamePaused = true;
     }
 
 }

@@ -41,6 +41,8 @@ public class GameController : MonoBehaviour
 
     private CheckPointController currentCheckpointData; //KEEPS TRACK OF THE CURRENT CHECKPOINT
 
+    public int gameOverScene;
+
 
 
     // Start is called before the first frame update
@@ -60,7 +62,7 @@ public class GameController : MonoBehaviour
     /* THROUGHOUT ALL OF THIS,
      * THE GAMECONTROLLER CHECKS IF THERE ARE ANY MULTIPLIERS PRESENT
      * IT ALSO KEEPS TRACK OF THE GAME TIME BY ADDING TIME.DELTATIME
-     */ 
+     */
 
     // Update is called once per frame
     void Update()
@@ -72,10 +74,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    void CheckDead() {
-        if(current_player.transform.position.y <= lowerBound && finish_point.GetComponent<FinishController>().getFinish() == false)
+    void CheckDead()
+    {
+        if (current_player.transform.position.y <= lowerBound && finish_point.GetComponent<FinishController>().getFinish() == false)
         {
-            if(this.currentCheckpointData == null)
+            if (this.currentCheckpointData == null)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -83,7 +86,7 @@ public class GameController : MonoBehaviour
             {
                 if (this.currentCheckpointData.GetLives() <= 0)
                 {
-                    SceneManager.LoadScene(3, LoadSceneMode.Single);
+                    SceneManager.LoadScene(gameOverScene, LoadSceneMode.Single);
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
@@ -93,16 +96,16 @@ public class GameController : MonoBehaviour
                     displayText();
                 }
             }
-            
+
         }
 
         if (getHealth() <= 0.0f)
         {
-            if(this.currentCheckpointData != null)
+            if (this.currentCheckpointData != null)
             {
-                if(this.currentCheckpointData.GetLives() <= 0)
+                if (this.currentCheckpointData.GetLives() <= 0)
                 {
-                    SceneManager.LoadScene(3, LoadSceneMode.Single);
+                    SceneManager.LoadScene(gameOverScene, LoadSceneMode.Single);
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
@@ -114,10 +117,10 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(3, LoadSceneMode.Single);
+                SceneManager.LoadScene(gameOverScene, LoadSceneMode.Single);
                 Cursor.lockState = CursorLockMode.None;
             }
-            
+
         }
 
     }
@@ -156,11 +159,11 @@ public class GameController : MonoBehaviour
     public void AddPoints(int point) //Adds (and later decreases) points
     {
         multiplier_on = true;
-        if(multiplier_time > 0) 
+        if (multiplier_time > 0)
         {
             UnityEngine.Debug.Log("MULTIPLIER ON");
             multiplier_point_count++;
-            if(multiplier_point_count == multiplier_point_bracket)
+            if (multiplier_point_count == multiplier_point_bracket)
             {
                 multiplier_point_count = 0;
                 this.points_multiplier++;
@@ -175,20 +178,20 @@ public class GameController : MonoBehaviour
 
     public void displayText() //DISPLAYS INFORMATION IN THE UI, CALLED BY OTHER SCRIPTS
     {
-        if(text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
+        if (text_disable == false) //IF THE TEXT IS DISABLED I.E WHEN THE GAME FINISHES, TEXT IS NOT DISPLAYED
         {
             scoreText.text = "POINTS: " + this.points + getMultiplier();
             playerHealthText.text = "HEARTS: " + getHealth().ToString();
-            if(currentCheckpointData != null)
+            if (currentCheckpointData != null)
             {
-                checkpointText.text =   "CHECKPOINT: " + currentCheckpointData.GetName() +
+                checkpointText.text = "CHECKPOINT: " + currentCheckpointData.GetName() +
                                         "\nCHECKPOINT LIVES: " + currentCheckpointData.GetLives().ToString();
             }
             else
             {
                 checkpointText.text = "CHECKPOINT: \nCHECKPOINT LIVES: " + 0;
             }
-            
+
         }
 
     }
@@ -206,7 +209,7 @@ public class GameController : MonoBehaviour
      * WILL BE USED TO CREATE A LIST OF USED POWERUPS
      * THIS LIST WILL BE USED TO DISPLAY ALL CURRENT POWERUPS AVAILABLE
      * ADD AND REMOVE METHODS ADD AND REMOVE POWER UPS FROM THE LIST
-     */ 
+     */
 
     public void AddPowerUp(string powerup)
     {
@@ -226,19 +229,20 @@ public class GameController : MonoBehaviour
     public void DisplayPower()
     {
         string text = "";
-        if(powerUpList.Count != 0)
+        if (powerUpList.Count != 0)
         {
             text += "POWER UP: ";
-            foreach (var power in powerUpList){
-                text += power + "\n"; 
+            foreach (var power in powerUpList)
+            {
+                text += power + "\n";
             }
         }
         powerUpText.text = text;
     }
-    
+
 
     //GETS THE MULTIPLIER IN STRING FROM HOWEVER I MIGHT CHANGE THIS
-    string getMultiplier() 
+    string getMultiplier()
     {
         return "\n" + multiplierText;
     }
@@ -265,7 +269,7 @@ public class GameController : MonoBehaviour
 
     public void DisableText(bool value)
     {
-        if(value == true)
+        if (value == true)
         {
             scoreText.text = "";
             promptText.text = "";
@@ -308,12 +312,12 @@ public class GameController : MonoBehaviour
     //GETS THE AMOUNT OF LIVES THE CURRENT CHECKPOINT HAS
     public int GetCheckpointLives()
     {
-        if(GetCheckPointData() != null)
+        if (GetCheckPointData() != null)
         {
             GetCheckPointData().GetLives();
         }
         return 0;
-        
+
     }
 
     public void updatePlayer(GameObject newPlayer)

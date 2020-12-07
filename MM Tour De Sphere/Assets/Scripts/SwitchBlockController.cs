@@ -15,7 +15,7 @@ public class SwitchBlockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
     }
 
     /*WHEN THE SWITCH IS ACTIVATED
@@ -24,7 +24,7 @@ public class SwitchBlockController : MonoBehaviour
 
     public void SwitchActivate()
     {
-        for(int index = 0; index<childrenList.Length; index++)
+        for (int index = 0; index < childrenList.Length; index++)
         {
             BlockController bc_component = childrenList[index].GetComponent<BlockController>();
             Renderer ren_component = childrenList[index].GetComponent<MeshRenderer>();

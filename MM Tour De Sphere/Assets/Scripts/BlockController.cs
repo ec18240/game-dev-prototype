@@ -50,22 +50,22 @@ public class BlockController : MonoBehaviour
 
     void setList()
     {
-        
+
     }
 
     //SETS MODES AS SHOWN ABOVE
 
     void setMode()
     {
-        if(gameObject.tag == "EnemyBlock")
+        if (gameObject.tag == "EnemyBlock")
         {
             state = Mode.Enemy;
         }
-        else if(gameObject.tag == "HealthBlock")
+        else if (gameObject.tag == "HealthBlock")
         {
             state = Mode.Health;
         }
-        else if(gameObject.tag == "SwitchBlock")
+        else if (gameObject.tag == "SwitchBlock")
         {
             state = Mode.Objective;
         }
@@ -81,13 +81,17 @@ public class BlockController : MonoBehaviour
     {
         switch (mode)
         {
-            case Mode.Enemy: state = Mode.Enemy;
+            case Mode.Enemy:
+                state = Mode.Enemy;
                 break;
-            case Mode.Health: state = Mode.Health;
+            case Mode.Health:
+                state = Mode.Health;
                 break;
-            case Mode.Objective: state = Mode.Objective;
+            case Mode.Objective:
+                state = Mode.Objective;
                 break;
-            case Mode.Inactive: state = Mode.Inactive;
+            case Mode.Inactive:
+                state = Mode.Inactive;
                 break;
             default:
                 UnityEngine.Debug.Log("Incorrect Mode inputted, please check code");
@@ -97,7 +101,7 @@ public class BlockController : MonoBehaviour
 
     public void SetDisable()
     {
-        if(state == Mode.Enemy)
+        if (state == Mode.Enemy)
         {
             Destroy(this.gameObject);
         }
@@ -123,7 +127,7 @@ public class BlockController : MonoBehaviour
         //UnityEngine.Debug.Log(this.gameObject.name + ": " + Vector3.Distance(player.transform.position, getLocation()));  
 
         //IF THE PLAYER IS LESS THAN 5 (I guess CM) AWAY FROM THE BLOCK, DISPLAY A PROMPT (THIS IS BUGGED, WILL FIX SOON)
-        if(Vector3.Distance(player.transform.position, getLocation()) < radius_distance)
+        if (Vector3.Distance(player.transform.position, getLocation()) < radius_distance)
         {
             //UnityEngine.Debug.Log("AYE");
             GUIControl.GetComponent<GameController>().SetPrompt("Press " + interactButton + " to interact with the block");
@@ -135,12 +139,13 @@ public class BlockController : MonoBehaviour
             GUIControl.GetComponent<GameController>().SetPrompt("");
             canActivate = false;
         }
-        
+
         //IF NOT ALREADY ACTIVATED, THE PLAYER IS ABLE TO PRESS A TO INTERACT WITH THE BLOCK
         // I MAY REDO THIS IMPLEMENTATION LIKE I HAVE DONE WITH MAGNET CONTROLLER.
         // MAKE A SEPARATE BLOCK CONTROLLER AND LEAVE THE PARTS THAT ALL BLOCKS HAVE IN THIS CODE
 
-        if(canActivate == true && Input.GetKeyDown(KeyCode.A)){
+        if (canActivate == true && Input.GetKeyDown(KeyCode.A))
+        {
             SoundManagerScript.PlaySound("SwitchBtn");
             GUIControl.GetComponent<GameController>().SetPrompt("");
             gameObject.GetComponent<SwitchBlockController>().SwitchActivate();

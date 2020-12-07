@@ -67,7 +67,6 @@ public class RampController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            index = 0;
             rampActivate = true;
             playerControl.SetPlayerControl(false); //Give the player no control during this scripted event
         }
