@@ -26,3 +26,5 @@ Collecting Points: https://www.youtube.com/watch?v=z9ophJd72MY&ab_channel=SFXSou
 Switch: https://www.youtube.com/watch?v=LcSxuXDCeDU&ab_channel=TheFkksounds 
 
 READ THE CHEAT SHEET (INSTRUCTIONS) FOR THE INSTRUCTIONS
+
+The game name is "Mummy Run: The Last Sarcophagus" - Didn't know how to change the name in repository!
