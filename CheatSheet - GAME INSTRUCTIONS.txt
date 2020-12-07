@@ -1,0 +1,49 @@
+CHEAT SHEET (INSTRUCTIONS)
+
+LEVEL 1:
+
+A: Collect all the yellow blocks in the first area
+	- Door should open
+	- Cross the bridge
+	- Press A to open the door
+		- If the door does not work, you may have to press A multiple times
+
+B: Shrink and find the yellow block (hint, it is on the right side)
+	- Press A on the block
+		-If this does not work, you may need to press it multiple times
+		-If the blocks are white, this has worked
+	- Climb up the blocks
+
+C: Complete the puzzle
+	- Hint you have to hit all three blocks within a time-limit
+	- The door should open
+
+D: GO GO GO GO GO
+	- Reach the area with the red bridge
+	- Go under the red bridge with the shrink button LEFT SHIFT
+	- GO GO GO
+
+E: Turn left and run, GO GO GO
+	- You should see a door with a yellow symbol. Press A to open the door
+	- Collect the magnet powerup
+	- GO GO GO GO GO
+	- Dodge all the enemy blocks and reach the yellow finishing cube at the end!
+
+LEVEL 2:
+
+A: Wait for the animation to end and begin the race
+	-Race down the long section
+	-You may need to shrink with LEFT SHIFT
+	-The spears won't block you in this section but they will damage you
+		- In the second section of level 2, the spears will also hit you
+	- With the light blue cubes, you need to go at FULL speed or you might miss the jump
+	- You should eventually see a big door spitting out pink spirits (pink like the points!)
+		Enter the door and you will be teleported and then switch characters
+
+B: Once you have completed the above section, you will switch characters
+	- Here is a maze, find your way out
+	- Use checkpoints as a guide that you are on the right path
+
+Sorry for any typos, I wrote this at 5AM
+
+- Ashley
